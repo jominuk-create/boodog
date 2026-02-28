@@ -204,7 +204,7 @@ export default function App() {
                 <div>
                   <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">공간</label>
                   <select 
-                    value={newTip.category}
+                    value={newTip.category || 'kitchen'}
                     onChange={(e) => setNewTip({ ...newTip, category: e.target.value as RoomType })}
                     className="w-full border border-slate-200 rounded px-3 py-2 text-sm outline-none focus:border-primary"
                   >
