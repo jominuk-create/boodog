@@ -25,6 +25,15 @@
     - 파란색 태그를 활용한 카테고리 구분.
 3. **Sharing Form:** 
     - 불필요한 애니메이션을 줄인 직관적인 입력 폼.
+4. **Refrigerator Recipe (냉장고 파먹기):**
+    - 냉장고에 있는 재료를 텍스트로 입력하면 만들 수 있는 요리를 추천해주는 기능.
+    - 입력된 재료와 매칭되는 정도에 따라 가중치를 두어 레시피 노출.
+
+### **Data Management**
+- **Data Structure:**
+  - `src/types.ts`: `Tip`, `Recipe`, `RoomType` 정의.
+  - `src/data/tips.ts`: 100개의 실용적인 초기 팁 데이터.
+  - `src/data/recipes.ts`: 30개의 자취생 맞춤형 간단 레시피 데이터.
 
 ## **Implementation Progress**
 
@@ -35,3 +44,12 @@
 ### **Step 2: Simplified UI Components** - **In Progress**
 - [ ] 평면도 디자인을 더 단순한 선형 구조로 변경.
 - [ ] 팁 카드 및 모달 디자인 간소화.
+
+### **Step 3: Content Expansion** - **Completed**
+- [x] 100개의 실용적인 자취 팁 데이터 생성 및 적용.
+- [x] 데이터와 타입 정의를 별도 파일로 분리하여 유지보수성 향상.
+
+### **Step 4: Refrigerator Recipe Feature** - **Completed**
+- [x] 냉장고 재료 기반 레시피 추천 로직 구현.
+- [x] 전용 UI 및 검색 바 추가.
+- [x] 30개의 초기 레시피 데이터 구축.
