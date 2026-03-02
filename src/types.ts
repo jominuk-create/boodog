@@ -16,3 +16,20 @@ export interface Recipe {
   instructions: string;
   difficulty: '쉬움' | '보통' | '어려움';
 }
+
+export interface PostComment {
+  id: number;
+  author: string;
+  content: string;
+  createdAt: string;
+}
+
+export interface CommunityPost {
+  id: number;
+  title: string;
+  content: string;
+  author: string;
+  createdAt: string;
+  likes: number;
+  comments: PostComment[];
+}

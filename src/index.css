@@ -9,9 +9,9 @@
   --color-secondary-foreground: #1e40af;
   --color-accent: #f8fafc;
   
-  --radius-lg: 0.75rem;
-  --radius-md: 0.5rem;
-  --radius-sm: 0.25rem;
+  --radius-lg: 1.5rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.5rem;
 }
 
 @layer base {
@@ -22,46 +22,48 @@
 }
 
 @layer components {
-  .room-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    gap: 0;
-    aspect-ratio: 16/10;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: #cbd5e1;
-    border: 2px solid #94a3b8;
+  /* Simple Fixed Height Floor Plan */
+  .house-map {
+    @apply w-full max-w-4xl mx-auto flex flex-col gap-3;
   }
 
-  .room {
-    @apply relative cursor-pointer transition-all duration-300 bg-white hover:bg-blue-50/50;
+  .map-row {
+    @apply flex gap-3 h-32;
   }
 
-  .room.active {
-    @apply bg-primary text-white z-10 scale-[1.01] shadow-2xl;
+  .map-cell {
+    @apply relative flex-1 bg-white border-2 border-slate-100 rounded-3xl p-4 flex flex-col items-center justify-center gap-2 
+           transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-1;
   }
 
-  .room-label {
-    @apply absolute bottom-2 right-2 text-[9px] font-black text-slate-300 uppercase tracking-tighter transition-colors;
+  .map-cell.active {
+    @apply bg-primary border-primary text-white shadow-xl shadow-blue-100 -translate-y-1;
   }
 
-  .room.active .room-label {
-    @apply text-white/40;
+  .map-cell .cell-icon {
+    @apply text-slate-300 transition-colors duration-300;
   }
-  
-  .room-icon {
-    @apply transition-all duration-300;
+
+  .map-cell.active .cell-icon {
+    @apply text-white;
   }
-  
-  .room.active .room-icon {
-    @apply text-white scale-110 drop-shadow-lg;
+
+  .map-cell .cell-label {
+    @apply text-[11px] font-black uppercase tracking-[0.1em] text-slate-400;
   }
-  
-  /* Door Effect */
-  .room::after {
-    content: '';
-    @apply absolute bg-slate-200 opacity-20;
+
+  .map-cell.active .cell-label {
+    @apply text-white/80;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-slate-50;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
   }
 }
