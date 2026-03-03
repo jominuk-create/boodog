@@ -8,7 +8,6 @@ import {
   X,
   Wind,
   Package,
-  Layers,
   Sparkles,
   Search,
   UtensilsCrossed,
@@ -42,6 +41,9 @@ export default function App() {
   const [showCommunity, setShowCommunity] = useState(false);
   const [selectedTip, setSelectedTip] = useState<Tip | null>(null);
   const [showLegal, setShowLegal] = useState<'privacy' | 'terms' | 'about' | null>(null);
+  
+  // Tips Search State
+  const [tipSearchQuery, setTipSearchQuery] = useState('');
 
   // Refrigerator Recipe State
   const [ingredientsInput, setIngredientsInput] = useState('');
@@ -53,11 +55,20 @@ export default function App() {
     setShowCommunity(false);
     setSelectedTip(null);
     setShowLegal(null);
+    setTipSearchQuery('');
   };
 
-  const filteredTips = activeRoom 
-    ? tips.filter(tip => tip.category === activeRoom)
-    : tips;
+  // Improved Filtering Logic (Room + Search)
+  const filteredTips = useMemo(() => {
+    return tips.filter(tip => {
+      const matchesRoom = activeRoom ? tip.category === activeRoom : true;
+      const query = tipSearchQuery.toLowerCase();
+      const matchesSearch = tip.title.toLowerCase().includes(query) || 
+                            tip.content.toLowerCase().includes(query) ||
+                            (tip.details && tip.details.toLowerCase().includes(query));
+      return matchesRoom && matchesSearch;
+    });
+  }, [tips, activeRoom, tipSearchQuery]);
 
   // Recipe Recommendation Logic
   const recommendedRecipes = useMemo(() => {
@@ -290,7 +301,7 @@ export default function App() {
 
             {/* Tips Feed Section */}
             <section className="mb-24">
-              <div className="flex items-center justify-between mb-12">
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                 <div className="flex items-center gap-4">
                   <div className="w-1.5 h-8 bg-primary rounded-full" />
                   <h3 className="text-3xl font-black text-slate-900 tracking-tight">
@@ -299,46 +310,74 @@ export default function App() {
                     ) : '전체 생활 꿀팁'}
                   </h3>
                 </div>
-                <div className="flex items-center gap-4">
-                  <span className="text-xs font-black text-slate-400 uppercase bg-slate-100 px-4 py-2 rounded-full tracking-widest">
-                    {filteredTips.length} Hacks Available
-                  </span>
+                
+                {/* Situation Search Bar */}
+                <div className="relative w-full max-w-md group">
+                  <input 
+                    type="text"
+                    value={tipSearchQuery}
+                    onChange={(e) => setTipSearchQuery(e.target.value)}
+                    placeholder="어떤 고민이 있으신가요? (예: 기름기, 곰팡이, 냄새...)"
+                    className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-12 py-4 outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-blue-50 transition-all font-bold text-sm"
+                  />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors" size={20} />
+                  {tipSearchQuery && (
+                    <button 
+                      onClick={() => setTipSearchQuery('')}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                    >
+                      <X size={18} />
+                    </button>
+                  )}
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <AnimatePresence mode='popLayout'>
-                  {filteredTips.sort((a, b) => b.id - a.id).map((tip) => (
-                    <motion.div
-                      key={tip.id}
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      onClick={() => setSelectedTip(tip)}
-                      className="bg-white/80 backdrop-blur-sm border border-slate-100 rounded-[2.5rem] p-8 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-all duration-500 group relative flex flex-col cursor-pointer hover:border-primary/20 hover:-translate-y-2"
-                    >
-                      <div className="flex items-center justify-between mb-6">
-                        <span className="text-[10px] font-black px-3 py-1 bg-primary/5 text-primary rounded-lg uppercase tracking-[0.1em]">
-                          {tip.category}
-                        </span>
-                        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
-                          <ChevronRight size={16} />
+              {filteredTips.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <AnimatePresence mode='popLayout'>
+                    {filteredTips.sort((a, b) => b.id - a.id).map((tip) => (
+                      <motion.div
+                        key={tip.id}
+                        layout
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        onClick={() => setSelectedTip(tip)}
+                        className="bg-white/80 backdrop-blur-sm border border-slate-100 rounded-[2.5rem] p-8 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-all duration-500 group relative flex flex-col cursor-pointer hover:border-primary/20 hover:-translate-y-2"
+                      >
+                        <div className="flex items-center justify-between mb-6">
+                          <span className="text-[10px] font-black px-3 py-1 bg-primary/5 text-primary rounded-lg uppercase tracking-[0.1em]">
+                            {tip.category}
+                          </span>
+                          <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                            <ChevronRight size={16} />
+                          </div>
                         </div>
-                      </div>
-                      <h4 className="text-xl font-black text-slate-900 mb-4 group-hover:text-primary transition-colors leading-tight">{tip.title}</h4>
-                      <p className="text-sm text-slate-500 leading-relaxed mb-8 flex-grow font-bold opacity-80 line-clamp-3">
-                        {tip.content}
-                      </p>
-                      <div className="flex items-center justify-end pt-6 border-t border-slate-50 mt-auto">
-                        <span className="text-[11px] font-black text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
-                          자세히 보기 <ArrowRight size={14} />
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
+                        <h4 className="text-xl font-black text-slate-900 mb-4 group-hover:text-primary transition-colors leading-tight">{tip.title}</h4>
+                        <p className="text-sm text-slate-500 leading-relaxed mb-8 flex-grow font-bold opacity-80 line-clamp-3">
+                          {tip.content}
+                        </p>
+                        <div className="flex items-center justify-end pt-6 border-t border-slate-50 mt-auto">
+                          <span className="text-[11px] font-black text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                            자세히 보기 <ArrowRight size={14} />
+                          </span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <div className="py-32 text-center bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200">
+                  <p className="text-slate-400 font-black text-xl mb-2">검색 결과가 없습니다.</p>
+                  <p className="text-sm text-slate-400 opacity-60">다른 키워드로 검색해 보시겠어요?</p>
+                  <button 
+                    onClick={() => setTipSearchQuery('')}
+                    className="mt-6 text-sm font-black text-primary hover:underline"
+                  >
+                    검색어 초기화
+                  </button>
+                </div>
+              )}
             </section>
 
             {/* About BBODOG Section (For AdSense/Trust) */}
