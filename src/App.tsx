@@ -14,7 +14,9 @@ import {
   UtensilsCrossed,
   MessageCircle,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  ChevronRight,
+  Home
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
@@ -67,22 +69,29 @@ export default function App() {
   }, [ingredientsInput]);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="border-b border-slate-100 py-4 px-8 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-md z-30">
-        <div className="flex items-center gap-2 cursor-pointer" onClick={resetNavigation}>
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-200">B</div>
+    <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-primary">
+      {/* Premium Header */}
+      <header className="border-b border-slate-100 py-5 px-8 flex items-center justify-between sticky top-0 bg-white/80 backdrop-blur-xl z-40">
+        <div className="flex items-center gap-3 cursor-pointer group" onClick={resetNavigation}>
+          <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-[0_10px_20px_-5px_rgba(29,78,216,0.4)] group-hover:scale-110 transition-transform duration-500">
+            B
+          </div>
           <div>
-            <h1 className="text-lg font-black tracking-tighter text-primary leading-none">BOODOG</h1>
-            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Life Hack Share</p>
+            <h1 className="text-xl font-black tracking-tighter text-slate-900 leading-none flex items-center gap-1">
+              BBODOG
+              <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
+            </h1>
+            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] mt-1">Life Hack Plaza</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <button 
             onClick={() => { resetNavigation(); setShowRecipes(true); }}
             className={cn(
-              "px-5 py-2.5 rounded-full text-sm font-black transition-all flex items-center gap-2",
-              showRecipes ? "bg-slate-100 text-slate-600" : "bg-blue-50 text-primary hover:bg-blue-100"
+              "px-6 py-3 rounded-2xl text-sm font-black transition-all flex items-center gap-2 active:scale-95",
+              showRecipes 
+                ? "bg-slate-900 text-white shadow-xl" 
+                : "bg-slate-50 text-slate-600 hover:bg-slate-100"
             )}
           >
             <UtensilsCrossed size={18} />
@@ -90,10 +99,7 @@ export default function App() {
           </button>
           <button 
             onClick={() => { resetNavigation(); setShowCommunity(true); }}
-            className={cn(
-                "px-5 py-2.5 rounded-full text-sm font-black transition-all flex items-center gap-2",
-                "bg-primary text-white hover:bg-blue-700 shadow-lg shadow-blue-100 active:scale-95"
-            )}
+            className="bg-primary text-white px-6 py-3 rounded-2xl text-sm font-black hover:bg-blue-700 transition-all shadow-[0_10px_25px_-5px_rgba(29,78,216,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(29,78,216,0.4)] active:scale-95 flex items-center gap-2"
           >
             <MessageCircle size={18} />
             커뮤니티 입장
@@ -101,83 +107,93 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-12">
+      <main className="max-w-6xl mx-auto px-6 py-16">
         
         {showRecipes ? (
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-16"
+            className="mb-20"
           >
-            <div className="bg-blue-600 rounded-3xl p-10 text-white shadow-2xl shadow-blue-200 overflow-hidden relative">
+            <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-[3rem] p-12 text-white shadow-[0_30px_60px_-12px_rgba(29,78,216,0.3)] overflow-hidden relative">
               <div className="relative z-10">
-                <h2 className="text-3xl font-black mb-2 flex items-center gap-3">
-                  <UtensilsCrossed size={32} />
-                  냉장고 파먹기 레시피
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs font-black uppercase tracking-widest mb-6">
+                  <Sparkles size={14} className="text-blue-200" />
+                  Recipe Finder
+                </div>
+                <h2 className="text-4xl font-black mb-4 tracking-tight leading-tight">
+                  냉장고에 있는 재료를<br />모두 적어보세요!
                 </h2>
-                <p className="text-blue-100 font-bold mb-8">냉장고에 있는 재료를 적어보세요. 요리를 추천해 드릴게요!</p>
+                <p className="text-blue-100 font-bold mb-10 text-lg opacity-80">최고의 레시피를 인공지능이 추천해 드립니다.</p>
                 
-                <div className="relative max-w-2xl">
+                <div className="relative max-w-2xl group">
                   <input 
                     type="text"
                     value={ingredientsInput}
                     onChange={(e) => setIngredientsInput(e.target.value)}
                     placeholder="예: 계란, 토마토, 파, 김치..."
-                    className="w-full bg-white/10 border-2 border-white/20 rounded-2xl px-6 py-4 outline-none focus:bg-white focus:text-slate-900 focus:border-white transition-all font-bold placeholder:text-blue-200 text-lg shadow-inner"
+                    className="w-full bg-white/10 border-2 border-white/20 rounded-[2rem] px-8 py-5 outline-none focus:bg-white focus:text-slate-900 focus:border-white transition-all font-bold placeholder:text-blue-200 text-xl shadow-inner backdrop-blur-md"
                   />
-                  <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-white/50" />
+                  <Search className="absolute right-8 top-1/2 -translate-y-1/2 text-white group-focus-within:text-primary transition-colors" size={24} />
                 </div>
               </div>
-              <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
+              <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+              <div className="absolute right-20 top-10 opacity-10 rotate-12">
+                <UtensilsCrossed size={200} />
+              </div>
             </div>
 
             {ingredientsInput.trim() && (
-              <div className="mt-12">
-                <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
-                  <Sparkles size={16} className="text-primary" />
-                  Recommended Recipes ({recommendedRecipes.length})
-                </h3>
+              <div className="mt-20">
+                <div className="flex items-center justify-between mb-10">
+                  <h3 className="text-sm font-black text-slate-400 uppercase tracking-[0.3em] flex items-center gap-3">
+                    <div className="w-8 h-[2px] bg-primary/30" />
+                    Recommended Recipes ({recommendedRecipes.length})
+                  </h3>
+                </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {recommendedRecipes.length > 0 ? (
                     recommendedRecipes.map(recipe => (
                       <motion.div 
                         key={recipe.id}
                         layout
-                        initial={{ opacity: 0, scale: 0.95 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="bg-white border-2 border-slate-100 rounded-3xl p-8 hover:border-primary transition-all group"
+                        className="bg-white border border-slate-100 rounded-[2.5rem] p-10 hover:border-primary/30 transition-all duration-500 group shadow-sm hover:shadow-2xl hover:-translate-y-2"
                       >
-                        <div className="flex items-start justify-between mb-4">
-                          <h4 className="text-xl font-black text-slate-900 group-hover:text-primary transition-colors">{recipe.name}</h4>
+                        <div className="flex items-start justify-between mb-6">
+                          <h4 className="text-2xl font-black text-slate-900 group-hover:text-primary transition-colors leading-tight">{recipe.name}</h4>
                           <span className={cn(
-                            "text-[10px] font-black px-2 py-1 rounded-md uppercase",
+                            "text-[10px] font-black px-3 py-1.5 rounded-xl uppercase tracking-wider shadow-sm",
                             recipe.difficulty === '쉬움' ? "bg-green-50 text-green-600" : 
                             recipe.difficulty === '보통' ? "bg-orange-50 text-orange-600" : "bg-red-50 text-red-600"
                           )}>
                             {recipe.difficulty}
                           </span>
                         </div>
-                        <div className="flex flex-wrap gap-2 mb-6">
+                        <div className="flex flex-wrap gap-2 mb-8">
                           {recipe.ingredients.map(ing => (
                             <span key={ing} className={cn(
-                              "text-xs font-bold px-3 py-1 rounded-full",
-                              ingredientsInput.includes(ing) ? "bg-primary text-white" : "bg-slate-100 text-slate-500"
+                              "text-xs font-bold px-4 py-2 rounded-full transition-all",
+                              ingredientsInput.includes(ing) 
+                                ? "bg-primary text-white shadow-lg shadow-blue-100 scale-105" 
+                                : "bg-slate-50 text-slate-400"
                             )}>
                               {ing}
                             </span>
                           ))}
                         </div>
-                        <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
-                          <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                        <div className="bg-slate-50 rounded-3xl p-6 border border-slate-100 group-hover:bg-blue-50/50 group-hover:border-blue-100 transition-colors">
+                          <p className="text-slate-600 leading-relaxed font-bold">
                             {recipe.instructions}
                           </p>
                         </div>
                       </motion.div>
                     ))
                   ) : (
-                    <div className="col-span-full py-20 text-center">
-                      <p className="text-slate-400 font-bold">매칭되는 레시피를 찾지 못했어요. 다른 재료를 입력해 보세요!</p>
+                    <div className="col-span-full py-32 text-center bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200">
+                      <p className="text-slate-400 font-black text-xl">매칭되는 레시피를 찾지 못했어요.<br /><span className="text-sm opacity-60">다른 재료를 입력해 보세요!</span></p>
                     </div>
                   )}
                 </div>
@@ -187,18 +203,18 @@ export default function App() {
         ) : (
           <>
             {/* Super Simple Floor Plan Section */}
-            <div className="mb-16">
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-sm font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
-                  <Layers size={14} />
+            <div className="mb-24">
+              <div className="flex items-center justify-between mb-10">
+                <h2 className="text-sm font-black text-slate-400 uppercase tracking-[0.3em] flex items-center gap-3">
+                  <Home size={16} />
                   Home Architecture
                 </h2>
                 {activeRoom && (
                   <button 
                     onClick={() => setActiveRoom(null)}
-                    className="text-xs font-black text-primary hover:underline flex items-center gap-1"
+                    className="text-xs font-black text-primary hover:text-blue-700 flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full transition-all active:scale-95"
                   >
-                    <X size={12} /> Clear Filter
+                    <X size={14} /> Clear Filter
                   </button>
                 )}
               </div>
@@ -210,38 +226,38 @@ export default function App() {
                     onClick={() => setActiveRoom('kitchen')}
                     className={cn("map-cell", activeRoom === 'kitchen' && "active")}
                   >
-                    <ChefHat className="cell-icon" size={28} />
+                    <ChefHat className="cell-icon" size={32} />
                     <span className="cell-label">Kitchen</span>
                   </div>
                   <div 
                     onClick={() => setActiveRoom('bathroom')}
                     className={cn("map-cell", activeRoom === 'bathroom' && "active")}
                   >
-                    <Bath className="cell-icon" size={28} />
+                    <Bath className="cell-icon" size={32} />
                     <span className="cell-label">Bath</span>
                   </div>
                   <div 
                     onClick={() => setActiveRoom('utility')}
                     className={cn("map-cell", activeRoom === 'utility' && "active")}
                   >
-                    <Package className="cell-icon" size={28} />
+                    <Package className="cell-icon" size={32} />
                     <span className="cell-label">Utility</span>
                   </div>
                 </div>
                 {/* Row 2 */}
-                <div className="map-row h-40">
+                <div className="map-row h-48">
                   <div 
                     onClick={() => setActiveRoom('bedroom')}
                     className={cn("map-cell flex-[2]", activeRoom === 'bedroom' && "active")}
                   >
-                    <Bed className="cell-icon" size={32} />
-                    <span className="cell-label text-sm">Bedroom (Master)</span>
+                    <Bed className="cell-icon" size={40} />
+                    <span className="cell-label text-sm">Bedroom</span>
                   </div>
                   <div 
                     onClick={() => setActiveRoom('livingroom')}
                     className={cn("map-cell flex-[2]", activeRoom === 'livingroom' && "active")}
                   >
-                    <Tv className="cell-icon" size={32} />
+                    <Tv className="cell-icon" size={40} />
                     <span className="cell-label text-sm">Living Area</span>
                   </div>
                 </div>
@@ -251,14 +267,14 @@ export default function App() {
                     onClick={() => setActiveRoom('balcony')}
                     className={cn("map-cell flex-[3]", activeRoom === 'balcony' && "active")}
                   >
-                    <Wind className="cell-icon" size={24} />
+                    <Wind className="cell-icon" size={28} />
                     <span className="cell-label">Balcony & Laundry</span>
                   </div>
                   <div 
                     onClick={() => setActiveRoom('entrance')}
                     className={cn("map-cell", activeRoom === 'entrance' && "active")}
                   >
-                    <DoorOpen className="cell-icon" size={24} />
+                    <DoorOpen className="cell-icon" size={28} />
                     <span className="cell-label">Entry</span>
                   </div>
                 </div>
@@ -267,45 +283,50 @@ export default function App() {
 
             {/* Tips Feed Section */}
             <section>
-              <div className="flex items-center justify-between mb-8 border-b-2 border-primary/10 pb-4">
-                <h3 className="text-xl font-black text-slate-800 flex items-center gap-2">
-                  <Sparkles size={20} className="text-primary" />
-                  {activeRoom ? (
-                    <span className="capitalize">{activeRoom} Tips</span>
-                  ) : 'All Life Hacks'}
-                </h3>
+              <div className="flex items-center justify-between mb-12">
                 <div className="flex items-center gap-4">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase bg-slate-100 px-2 py-1 rounded">
-                    Life Hacks ({filteredTips.length})
+                  <div className="w-1.5 h-8 bg-primary rounded-full" />
+                  <h3 className="text-3xl font-black text-slate-900 tracking-tight">
+                    {activeRoom ? (
+                      <span className="capitalize">{activeRoom} 노하우</span>
+                    ) : '전체 생활 꿀팁'}
+                  </h3>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-xs font-black text-slate-400 uppercase bg-slate-100 px-4 py-2 rounded-full tracking-widest">
+                    {filteredTips.length} Hacks Available
                   </span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <AnimatePresence mode='popLayout'>
                   {filteredTips.sort((a, b) => b.id - a.id).map((tip) => (
                     <motion.div
                       key={tip.id}
                       layout
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
                       onClick={() => setSelectedTip(tip)}
-                      className="bg-white border-2 border-slate-50 rounded-3xl p-6 hover:shadow-xl hover:shadow-blue-50 transition-all duration-300 group relative flex flex-col cursor-pointer hover:border-primary/30"
+                      className="bg-white/80 backdrop-blur-sm border border-slate-100 rounded-[2.5rem] p-8 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-all duration-500 group relative flex flex-col cursor-pointer hover:border-primary/20 hover:-translate-y-2"
                     >
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-[9px] font-black px-2 py-1 bg-primary/5 text-primary rounded-md uppercase tracking-wider">
+                      <div className="flex items-center justify-between mb-6">
+                        <span className="text-[10px] font-black px-3 py-1 bg-primary/5 text-primary rounded-lg uppercase tracking-[0.1em]">
                           {tip.category}
                         </span>
+                        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                          <ChevronRight size={16} />
+                        </div>
                       </div>
-                      <h4 className="font-black text-slate-900 mb-3 group-hover:text-primary transition-colors leading-tight">{tip.title}</h4>
-                      <p className="text-sm text-slate-500 leading-relaxed mb-6 flex-grow border-l-4 border-slate-100 pl-4">
+                      <h4 className="text-xl font-black text-slate-900 mb-4 group-hover:text-primary transition-colors leading-tight">{tip.title}</h4>
+                      <p className="text-sm text-slate-500 leading-relaxed mb-8 flex-grow font-bold opacity-80 line-clamp-3">
                         {tip.content}
                       </p>
-                      <div className="flex items-center justify-end pt-4 border-t border-slate-50 mt-auto">
-                        <button className="text-[10px] font-bold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
-                          자세히 보기 <ArrowRight size={12} />
-                        </button>
+                      <div className="flex items-center justify-end pt-6 border-t border-slate-50 mt-auto">
+                        <span className="text-[11px] font-black text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                          자세히 보기 <ArrowRight size={14} />
+                        </span>
                       </div>
                     </motion.div>
                   ))}
@@ -316,67 +337,67 @@ export default function App() {
         )}
       </main>
 
-      {/* Tip Detail Modal */}
+      {/* Premium Tip Detail Modal */}
       <AnimatePresence>
         {selectedTip && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setSelectedTip(null)}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-xl"
             />
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-2xl bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 overflow-hidden"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl bg-white rounded-[3rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)] border border-slate-100 overflow-hidden"
             >
-              <div className="p-8 border-b border-slate-50 flex items-center justify-between bg-white sticky top-0 z-10">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-primary">
-                    <Sparkles size={20} />
+              <div className="p-10 border-b border-slate-50 flex items-center justify-between bg-white/80 backdrop-blur-md sticky top-0 z-10">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-primary shadow-inner">
+                    <Sparkles size={28} />
                   </div>
                   <div>
-                    <span className="text-[10px] font-black text-primary uppercase tracking-widest bg-blue-50 px-2 py-0.5 rounded-md">{selectedTip.category}</span>
-                    <h2 className="text-xl font-black text-slate-900 tracking-tight">{selectedTip.title}</h2>
+                    <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em] bg-primary/5 px-3 py-1 rounded-full mb-1 inline-block">{selectedTip.category}</span>
+                    <h2 className="text-2xl font-black text-slate-900 tracking-tight leading-tight">{selectedTip.title}</h2>
                   </div>
                 </div>
                 <button 
                   onClick={() => setSelectedTip(null)}
-                  className="w-10 h-10 flex items-center justify-center bg-slate-50 rounded-full text-slate-400 hover:text-slate-600 transition-colors"
+                  className="w-12 h-12 flex items-center justify-center bg-slate-50 rounded-full text-slate-400 hover:text-slate-600 transition-all hover:rotate-90 active:scale-90 shadow-sm"
                 >
-                  <X size={20} />
+                  <X size={24} />
                 </button>
               </div>
 
-              <div className="p-10 max-h-[70vh] overflow-y-auto custom-scrollbar">
-                <div className="mb-10">
-                  <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <Layers size={16} className="text-primary" />
+              <div className="p-12 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                <div className="mb-12">
+                  <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+                    <div className="w-6 h-[2px] bg-primary/30" />
                     상세 설명
                   </h3>
-                  <p className="text-lg text-slate-600 leading-relaxed font-medium bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                  <p className="text-xl text-slate-700 leading-relaxed font-bold bg-slate-50 p-8 rounded-[2rem] border border-slate-100 shadow-inner">
                     {selectedTip.details || selectedTip.content}
                   </p>
                 </div>
 
                 {selectedTip.steps && (
                   <div>
-                    <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
-                      <CheckCircle2 size={16} className="text-primary" />
+                    <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-8 flex items-center gap-3">
+                      <div className="w-6 h-[2px] bg-primary/30" />
                       실행 단계
                     </h3>
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                       {selectedTip.steps.map((step, index) => (
                         <motion.div 
                           key={index}
-                          initial={{ opacity: 0, x: -10 }}
+                          initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className="flex gap-4 p-5 rounded-2xl bg-white border-2 border-slate-50 hover:border-blue-100 transition-colors group"
+                          className="flex gap-6 p-6 rounded-[1.5rem] bg-white border border-slate-100 hover:border-primary/20 hover:shadow-lg hover:shadow-blue-50 transition-all group"
                         >
-                          <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-black text-sm shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                          <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-black text-lg shrink-0 shadow-[0_5px_15px_-3px_rgba(29,78,216,0.4)] group-hover:scale-110 transition-transform">
                             {index + 1}
                           </div>
-                          <p className="text-slate-700 font-bold leading-relaxed pt-1">
+                          <p className="text-slate-800 font-bold leading-relaxed pt-1.5 text-lg">
                             {step}
                           </p>
                         </motion.div>
@@ -386,12 +407,13 @@ export default function App() {
                 )}
               </div>
 
-              <div className="p-8 border-t border-slate-50 bg-slate-50/50 flex justify-center">
+              <div className="p-10 border-t border-slate-50 bg-slate-50/50 flex justify-center">
                 <button 
                   onClick={() => setSelectedTip(null)}
-                  className="bg-primary text-white px-8 py-3 rounded-2xl font-black shadow-lg shadow-blue-100 hover:bg-blue-700 transition-all active:scale-95"
+                  className="bg-slate-900 text-white px-10 py-4 rounded-2xl font-black shadow-xl hover:bg-black transition-all active:scale-95 flex items-center gap-2 group"
                 >
-                  확인했습니다!
+                  이해했습니다
+                  <CheckCircle2 size={20} className="text-blue-400 group-hover:scale-125 transition-transform" />
                 </button>
               </div>
             </motion.div>
