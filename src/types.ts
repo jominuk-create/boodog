@@ -5,8 +5,8 @@ export interface Tip {
   category: RoomType;
   title: string;
   content: string;
-  author: string;
-  likes: number;
+  details?: string;
+  steps?: string[];
 }
 
 export interface Recipe {
@@ -18,18 +18,18 @@ export interface Recipe {
 }
 
 export interface PostComment {
-  id: number;
+  id: string;
   author: string;
   content: string;
-  createdAt: string;
+  createdAt: any; // Firestore timestamp
 }
 
 export interface CommunityPost {
-  id: number;
+  id: string;
   title: string;
   content: string;
   author: string;
-  createdAt: string;
+  createdAt: any; // Firestore timestamp
   likes: number;
-  comments: PostComment[];
+  commentCount: number;
 }

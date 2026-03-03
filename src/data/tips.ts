@@ -1,117 +1,362 @@
 import type { Tip } from '../types';
 
 export const INITIAL_TIPS: Tip[] = [
-  // Kitchen (주방)
-  { id: 1, category: 'kitchen', title: '냉장고 냄새 제거', content: '먹다 남은 소주를 뚜껑 열어 넣어두거나 커피 찌꺼기를 말려 활용해 보세요.', author: '자취고수', likes: 42 },
-  { id: 2, category: 'kitchen', title: '초파리 트랩 만들기', content: '설탕, 식초, 주방세제를 1:1:1로 섞어두면 초파리가 싹 사라집니다.', author: '요리왕', likes: 56 },
-  { id: 3, category: 'kitchen', title: '남은 배달 피자 데우기', content: '물 한 컵과 함께 전자레인지에 돌리면 빵 끝까지 촉촉하게 데워집니다.', author: '피자러버', likes: 34 },
-  { id: 4, category: 'kitchen', title: '탄 냄비 복구', content: '베이킹소다와 식초를 넣고 끓인 후 닦아내면 탄 자국이 쉽게 제거됩니다.', author: '살림9단', likes: 28 },
-  { id: 5, category: 'kitchen', title: '김치통 냄새 제거', content: '설탕물(물:설탕=2:1)을 담아 반나절 정도 두면 냄새가 빠집니다.', author: '김치러버', likes: 19 },
-  { id: 6, category: 'kitchen', title: '전자레인지 청소', content: '물과 식초를 섞어 5분간 돌린 후 수증기로 불려진 내부를 닦아내세요.', author: '깔끔이', likes: 33 },
-  { id: 7, category: 'kitchen', title: '마늘 껍질 쉽게 까기', content: '전자레인지에 통마늘을 20초 정도 돌리면 껍질이 쉽게 벗겨집니다.', author: '마늘덕후', likes: 25 },
-  { id: 8, category: 'kitchen', title: '양파 썰 때 눈물 방지', content: '양파를 썰기 전 15분 정도 냉장고에 넣어두거나 칼에 물을 묻혀보세요.', author: '울보', likes: 21 },
-  { id: 9, category: 'kitchen', title: '프라이팬 기름때 제거', content: '밀가루를 뿌려 기름을 흡착시킨 뒤 닦아내면 세제 없이도 깨끗해집니다.', author: '친환경', likes: 30 },
-  { id: 10, category: 'kitchen', title: '쌀벌레 퇴치', content: '쌀통에 마늘이나 고추를 넣어두면 쌀벌레가 생기는 것을 막을 수 있습니다.', author: '밥심', likes: 27 },
-  { id: 11, category: 'kitchen', title: '싱크대 물때 제거', content: '감자 껍질로 문지르면 물때가 제거되고 광택이 납니다.', author: '알뜰살림', likes: 18 },
-  { id: 12, category: 'kitchen', title: '식용유 유통기한', content: '개봉 후 6개월 내에 사용하는 것이 좋으며, 산패된 기름은 폐유 수거함에 버리세요.', author: '건강지킴이', likes: 15 },
-  { id: 13, category: 'kitchen', title: '냉동 고기 해동', content: '설탕물에 담가두면 삼투압 작용으로 육즙 손실 없이 빠르게 해동됩니다.', author: '고기대장', likes: 36 },
-  { id: 14, category: 'kitchen', title: '도마 살균', content: '굵은 소금과 레몬으로 문질러 닦으면 살균 효과와 냄새 제거에 탁월합니다.', author: '위생철저', likes: 24 },
-  { id: 15, category: 'kitchen', title: '계란 신선도 확인', content: '소금물에 넣었을 때 가라앉으면 신선한 계란, 뜨면 상한 계란입니다.', author: '에그머니', likes: 29 },
-  { id: 16, category: 'kitchen', title: '바나나 보관법', content: '꼭지 부분을 랩으로 감싸거나 옷걸이에 걸어두면 갈변을 늦출 수 있습니다.', author: '과일조아', likes: 31 },
+  // --- Kitchen (주방) 1-20 ---
+  { 
+    id: 1, category: 'kitchen', title: '냉장고 냄새 제거', 
+    content: '먹다 남은 소주나 커피 찌꺼기를 활용해 보세요.',
+    details: '냉장고의 불쾌한 냄새는 알코올 성분이나 탈취 효과가 있는 재료로 쉽게 해결할 수 있습니다.',
+    steps: ['먹다 남은 소주 뚜껑을 열어 냉장고 구석에 둡니다.', '커피 찌꺼기를 바짝 말린 후 빈 용기에 담아 넣습니다.', '태운 식빵을 은박지에 싸서 구멍을 낸 뒤 넣어두면 강력한 탈취 효과가 있습니다.']
+  },
+  { 
+    id: 2, category: 'kitchen', title: '탄 냄비 닦는 법', 
+    content: '식초와 베이킹소다를 넣고 끓여주세요.',
+    details: '냄비 바닥이 까맣게 탔을 때 억지로 문지르지 마세요. 산성 성분이 탄 자국을 분리해 줍니다.',
+    steps: ['냄비에 물을 잠길 정도로 붓습니다.', '식초 3스푼과 베이킹소다 1스푼을 넣습니다.', '10분간 끓인 뒤 부드러운 수세미로 닦아냅니다.']
+  },
+  { 
+    id: 3, category: 'kitchen', title: '마늘 오래 보관하기', 
+    content: '설탕을 깐 통에 보관하면 습기를 방지합니다.',
+    details: '다진 마늘이나 통마늘은 습기에 취약합니다. 설탕이 천연 제습제 역할을 합니다.',
+    steps: ['밀폐 용기 바닥에 설탕을 1cm 두께로 깝니다.', '키친타월을 한 장 올리고 마늘을 담습니다.', '다시 키친타월로 덮어 냉장 보관합니다.']
+  },
+  { 
+    id: 4, category: 'kitchen', title: '남은 콜라 활용법', 
+    content: '가스레인지 기름때와 녹 제거에 탁월합니다.',
+    details: '콜라의 산성과 당분 성분은 찌든 때를 녹여내는 데 효과적입니다.',
+    steps: ['기름때 부위에 콜라를 붓고 10분간 기다립니다.', '수세미로 문지르면 기름기가 쉽게 제거됩니다.', '녹슨 공구 등을 콜라에 담가두면 녹이 사라집니다.']
+  },
+  { 
+    id: 5, category: 'kitchen', title: '양파 눈물 없이 썰기', 
+    content: '양파를 차갑게 하거나 물속에서 썰어보세요.',
+    details: '양파의 매운 성분이 공기 중으로 퍼지는 것을 막는 것이 핵심입니다.',
+    steps: ['썰기 10분 전 냉동실에 넣어 차갑게 만듭니다.', '칼날에 물을 묻히거나 물을 입에 물고 썹니다.', '촛불을 켜두고 썰면 휘발 성분이 촛불에 타서 덜 맵습니다.']
+  },
+  { 
+    id: 6, category: 'kitchen', title: '눅눅한 김 살리기', 
+    content: '전자레인지에 15초만 돌려보세요.',
+    details: '전자레인지의 열이 김에 스며든 수분을 순식간에 증발시킵니다.',
+    steps: ['접시에 눅눅한 김을 겹치지 않게 펼칩니다.', '전자레인지에서 15~20초간 가열합니다.', '꺼낸 즉시 흔들어 식히면 다시 바삭해집니다.']
+  },
+  { 
+    id: 7, category: 'kitchen', title: '전자레인지 청소', 
+    content: '식초 물을 넣고 돌려 수증기를 만드세요.',
+    details: '눌어붙은 음식물은 수증기로 불려서 닦는 것이 가장 효과적입니다.',
+    steps: ['그릇에 물과 식초를 1:1로 섞어 담습니다.', '5분간 전자레인지를 작동시킵니다.', '문이 닫힌 상태로 2분 대기 후 내부를 닦아냅니다.']
+  },
+  { 
+    id: 8, category: 'kitchen', title: '쌀벌레 방지법', 
+    content: '마늘이나 고추를 쌀통에 넣어두세요.',
+    details: '쌀벌레는 강한 향을 싫어합니다. 화학 약품 없이 퇴치 가능합니다.',
+    steps: ['껍질을 벗기지 않은 통마늘을 쌀통에 넣습니다.', '말린 붉은 고추를 함께 넣어두면 더 효과적입니다.', '가장 확실한 방법은 쌀을 생수병에 담아 냉장 보관하는 것입니다.']
+  },
+  { 
+    id: 9, category: 'kitchen', title: '고구마 빨리 익히기', 
+    content: '다시마 조각을 함께 넣고 삶으세요.',
+    details: '다시마의 염분이 고구마의 조직을 부드럽게 만들어 열 전달을 돕습니다.',
+    steps: ['냄비에 물과 고구마를 넣습니다.', '다시마 조각(5cm) 1~2개를 넣습니다.', '평소보다 약 5~10분 정도 빨리 익습니다.']
+  },
+  { 
+    id: 10, category: 'kitchen', title: '두부 오래 보관하기', 
+    content: '소금물에 담가 냉장 보관하세요.',
+    details: '미생물 번식을 억제하고 두부의 탄력을 유지하는 방법입니다.',
+    steps: ['용기에 두부를 담고 물을 가득 채웁니다.', '소금 반 스푼을 넣어 녹입니다.', '매일 물을 갈아주면 1주일 이상 신선합니다.']
+  },
+  { 
+    id: 11, category: 'kitchen', title: '남은 과자 바삭하게', 
+    content: '각설탕을 과자 봉지에 함께 넣으세요.',
+    details: '각설탕이 봉지 안의 미세한 습기를 흡수하여 과자를 눅눅하지 않게 합니다.',
+    steps: ['과자 봉지 입구를 잘 밀봉합니다.', '각설탕 1개를 봉지 안에 집어넣습니다.', '공기가 들어가지 않게 집게로 고정합니다.']
+  },
+  { 
+    id: 12, category: 'kitchen', title: '포도 씻는 법', 
+    content: '밀가루나 베이킹소다를 뿌려 씻으세요.',
+    details: '포도알 사이사이의 이물질과 농약을 흡착하여 제거합니다.',
+    steps: ['포도에 밀가루를 골고루 뿌려 10분 둡니다.', '흐르는 물에 포도를 흔들며 씻어냅니다.', '식초 물에 마지막으로 헹궈주면 소독 효과가 있습니다.']
+  },
+  { 
+    id: 13, category: 'kitchen', title: '달걀 신선도 확인', 
+    content: '소금물에 넣어 가라앉는지 보세요.',
+    details: '오래된 달걀은 내부에 공기가 차서 물에 뜨게 됩니다.',
+    steps: ['물에 소금을 적당량 풀어 소금물을 만듭니다.', '달걀을 조심스럽게 넣습니다.', '바닥에 옆으로 눕거나 가라앉으면 신선, 서거나 뜨면 상한 것입니다.']
+  },
+  { 
+    id: 14, category: 'kitchen', title: '튀김 기름 온도 확인', 
+    content: '나무젓가락을 넣어 기포를 확인하세요.',
+    details: '온도계 없이도 적정 튀김 온도를 알 수 있는 간단한 방법입니다.',
+    steps: ['기름이 가열되면 나무젓가락 끝을 넣습니다.', '3~4초 뒤 기포가 보글보글 올라오면 170~180도입니다.', '반죽 조각을 떨어뜨려 중간까지 갔다 바로 올라오면 적당합니다.']
+  },
+  { 
+    id: 15, category: 'kitchen', title: '뚝배기 세척법', 
+    content: '세제 대신 쌀뜨물로 닦아주세요.',
+    details: '뚝배기의 미세한 구멍은 세제를 흡수했다가 요리할 때 내뱉습니다.',
+    steps: ['사용한 뚝배기에 쌀뜨물을 붓습니다.', '부드러운 수세미로 음식 찌꺼기를 제거합니다.', '베이킹소다를 활용하거나 밀가루 물로 닦는 것도 좋습니다.']
+  },
+  { 
+    id: 16, category: 'kitchen', title: '생선 잡내 제거', 
+    content: '굽기 전 우유나 쌀뜨물에 담그세요.',
+    details: '우유의 단백질이 잡내를 흡착하고 생선 살을 부드럽게 합니다.',
+    steps: ['생선을 조리 20분 전 우유에 담가둡니다.', '또는 쌀뜨물에 식초를 섞어 담가도 좋습니다.', '물기를 키친타월로 완전히 닦아낸 뒤 조리합니다.']
+  },
+  { 
+    id: 17, category: 'kitchen', title: '스테인리스 연마제 제거', 
+    content: '식용유로 닦은 뒤 식초 물에 끓이세요.',
+    details: '새 스테인리스 제품에는 검은 연마제가 묻어 있어 반드시 제거해야 합니다.',
+    steps: ['키친타월에 식용유를 묻혀 검은색이 안 나올 때까지 닦습니다.', '베이킹소다로 한번 더 닦아 기름기를 제거합니다.', '물과 식초를 넣고 10분간 끓여 마무리합니다.']
+  },
+  { 
+    id: 18, category: 'kitchen', title: '도마 냄새 제거', 
+    content: '레몬이나 굵은 소금으로 문지르세요.',
+    details: '나무나 플라스틱 도마 틈새에 밴 냄새와 살균을 동시에 해결합니다.',
+    steps: ['도마 위에 굵은 소금을 뿌리고 문지릅니다.', '레몬 조각으로 표면을 다시 한번 닦습니다.', '햇볕이 잘 드는 곳에서 바짝 말려줍니다.']
+  },
+  { 
+    id: 19, category: 'kitchen', title: '꿀 흘리지 않고 뜨기', 
+    content: '숟가락을 뜨거운 물에 담갔다 쓰세요.',
+    details: '숟가락의 열기가 꿀의 점도를 낮춰 깔끔하게 떨어지게 합니다.',
+    steps: ['컵에 뜨거운 물을 담아 숟가락을 잠시 둡니다.', '물기를 닦고 꿀을 뜹니다.', '꿀이 실처럼 늘어지지 않고 숟가락에서 쏙 떨어집니다.']
+  },
+  { 
+    id: 20, category: 'kitchen', title: '와인 코르크가 없을 때', 
+    content: '나무젓가락과 나사못을 활용하세요.',
+    details: '지렛대의 원리를 이용해 코르크를 뽑아낼 수 있습니다.',
+    steps: ['코르크 중앙에 긴 나사못을 깊게 돌려 박습니다.', '장도리나 지렛대 역할을 할 도구로 나사못을 잡아당깁니다.', '없다면 코르크를 와인병 안으로 밀어 넣는 것도 방법입니다.']
+  },
 
-  // Bathroom (욕실)
-  { id: 17, category: 'bathroom', title: '배수구 머리카락 청소', content: '빨대를 V자로 잘라서 넣었다 빼면 머리카락이 잘 걸려 나옵니다.', author: '깔끔이', likes: 25 },
-  { id: 18, category: 'bathroom', title: '거울 김서림 방지', content: '린스나 비누를 거울에 얇게 바른 뒤 마른 수건으로 닦아주세요.', author: '샤워매니아', likes: 31 },
-  { id: 19, category: 'bathroom', title: '수건 냄새 제거', content: '빨래할 때 식초 한 스푼을 넣으면 꿉꿉한 냄새가 사라집니다.', author: '향기맨', likes: 51 },
-  { id: 20, category: 'bathroom', title: '변기 청소 꿀팁', content: '김빠진 콜라를 변기에 붓고 30분 뒤 물을 내리면 찌든 때가 제거됩니다.', author: '콜라활용', likes: 22 },
-  { id: 21, category: 'bathroom', title: '수전 물때 제거', content: '치약을 묻힌 칫솔로 닦으면 반짝반짝 광이 납니다.', author: '치카치카', likes: 28 },
-  { id: 22, category: 'bathroom', title: '샤워기 헤드 청소', content: '식초를 담은 비닐봉지에 샤워기 헤드를 담가두면 물때가 녹아 나옵니다.', author: '물줄기', likes: 35 },
-  { id: 23, category: 'bathroom', title: '욕실 곰팡이 제거', content: '휴지에 락스를 묻혀 곰팡이 부위에 붙여두고 반나절 뒤 떼어내세요.', author: '곰팡이싹', likes: 44 },
-  { id: 24, category: 'bathroom', title: '비누 무름 방지', content: '비누 밑에 병뚜껑을 박아두거나 스펀지를 깔면 물러지는 것을 막을 수 있습니다.', author: '비누절약', likes: 17 },
-  { id: 25, category: 'bathroom', title: '욕조 청소', content: '베이킹소다와 식초를 뿌리고 스펀지로 문지르면 묵은 때가 잘 벗겨집니다.', author: '반신욕', likes: 20 },
-  { id: 26, category: 'bathroom', title: '화장실 악취 제거', content: '성냥을 켜면 연소되면서 악취 성분이 사라집니다.', author: '불꽃남자', likes: 14 },
-  { id: 27, category: 'bathroom', title: '칫솔 살균', content: '구강청결제에 30분 정도 담가두면 세균이 제거됩니다.', author: '덴탈케어', likes: 19 },
-  { id: 28, category: 'bathroom', title: '면도기 관리', content: '사용 후 알코올로 소독하고 건조한 곳에 보관하면 날이 오래갑니다.', author: '쉐이빙', likes: 16 },
-  { id: 29, category: 'bathroom', title: '타일 틈새 청소', content: '양초를 타일 틈새에 칠하면 곰팡이가 생기는 것을 방지할 수 있습니다.', author: '줄눈관리', likes: 26 },
-  { id: 30, category: 'bathroom', title: '샤워커튼 곰팡이', content: '소금물에 담가두면 곰팡이 예방에 효과적입니다.', author: '커튼콜', likes: 13 },
+  // --- Bathroom (욕실) 21-40 ---
+  { 
+    id: 21, category: 'bathroom', title: '거울 김 서림 방지', 
+    content: '비누나 린스로 코팅해 보세요.',
+    details: '계면활성제 성분이 얇은 막을 형성해 물방울이 맺히는 것을 방지합니다.',
+    steps: ['마른 거울에 비누나 린스를 골고루 문지릅니다.', '마른 수건으로 자국이 보이지 않을 때까지 닦아냅니다.', '샤워 후에도 김이 서리지 않는 거울을 볼 수 있습니다.']
+  },
+  { 
+    id: 22, category: 'bathroom', title: '욕실 줄눈 곰팡이', 
+    content: '휴지에 락스를 적셔 붙여두세요.',
+    details: '약품이 증발하지 않고 곰팡이 뿌리까지 침투하게 하는 방법입니다.',
+    steps: ['휴지를 길게 말아 타일 틈새에 올립니다.', '분무기로 락스를 흠뻑 뿌려 밀착시킵니다.', '반나절 뒤 휴지를 걷어내고 물로 헹굽니다.']
+  },
+  { 
+    id: 23, category: 'bathroom', title: '수전 광택 내기', 
+    content: '치약을 묻혀 닦으면 반짝거립니다.',
+    details: '치약의 연마제 성분이 물때를 제거하고 금속 광택을 되살립니다.',
+    steps: ['못 쓰는 칫솔에 치약을 묻힙니다.', '수전 전체를 구석구석 문지릅니다.', '물로 씻어낸 뒤 마른 수건으로 닦으면 광택이 오래갑니다.']
+  },
+  { 
+    id: 24, category: 'bathroom', title: '변기 냄새 제거', 
+    content: '치약 튜브를 수조에 넣어두세요.',
+    details: '물을 내릴 때마다 세정 성분과 향기가 퍼지는 자동 세정 효과입니다.',
+    steps: ['다 써가는 치약 끝을 아주 조금 자릅니다.', '변기 뒤쪽 물탱크 안에 넣어둡니다.', '은은한 향과 함께 물때 방지 효과를 볼 수 있습니다.']
+  },
+  { 
+    id: 25, category: 'bathroom', title: '샤워기 헤드 소독', 
+    content: '식초 물에 1시간 담가두세요.',
+    details: '구멍 속에 낀 석회질과 세균을 식초의 산성이 녹여줍니다.',
+    steps: ['지퍼백에 따뜻한 물과 식초를 1:1로 담습니다.', '샤워기 헤드를 잠기게 넣고 묶습니다.', '1시간 뒤 꺼내어 칫솔로 구멍을 문지른 후 물을 강하게 틉니다.']
+  },
+  { 
+    id: 26, category: 'bathroom', title: '하수구 냄새 차단', 
+    content: '베이킹소다와 식초를 붓고 기다리세요.',
+    details: '화학 반응으로 생기는 거품이 배관 속 오물을 분해합니다.',
+    steps: ['하수구에 베이킹소다 한 컵을 붓습니다.', '식초 한 컵을 부어 거품이 일게 합니다.', '15분 뒤 뜨거운 물을 충분히 부어 마무리합니다.']
+  },
+  { 
+    id: 27, category: 'bathroom', title: '욕실 슬리퍼 물때', 
+    content: '과탄산소다 녹인 물에 담그세요.',
+    details: '슬리퍼 구멍 사이의 찌든 물때는 불려서 제거하는 것이 쉽습니다.',
+    steps: ['대야에 뜨거운 물과 과탄산소다 반 컵을 섞습니다.', '슬리퍼를 잠기게 넣고 30분 둡니다.', '가볍게 솔질하여 헹궈내면 새것처럼 깨끗해집니다.']
+  },
+  { 
+    id: 28, category: 'bathroom', title: '샴푸로 세면대 청소', 
+    content: '남은 샴푸를 수세미에 묻혀 닦으세요.',
+    details: '샴푸의 세정 성분은 욕실의 기름기와 비누 거품 때를 잘 지워줍니다.',
+    steps: ['세면대 주변에 물을 뿌립니다.', '샴푸를 수세미에 묻혀 거품을 내어 닦습니다.', '향기도 좋고 코팅 효과가 있어 물때가 덜 생깁니다.']
+  },
+  { 
+    id: 29, category: 'bathroom', title: '칫솔 살균법', 
+    content: '소금물에 30분간 담가두세요.',
+    details: '삼투압 현상으로 칫솔모 사이의 세균을 억제합니다.',
+    steps: ['컵에 따뜻한 물과 소금 1스푼을 넣습니다.', '칫솔모 부분이 아래로 가게 담급니다.', '주 1회 정도 실행하면 위생적으로 관리할 수 있습니다.']
+  },
+  { 
+    id: 30, category: 'bathroom', title: '욕조 물때 제거', 
+    content: '베이킹소다를 뿌려 문지르세요.',
+    details: '미세한 베이킹소다 가루가 연마제 역할을 하여 욕조 표면을 매끄럽게 합니다.',
+    steps: ['욕조 전체에 물을 살짝 묻힙니다.', '베이킹소다를 골고루 뿌립니다.', '스펀지로 가볍게 문지른 후 물로 헹굽니다.']
+  },
 
-  // Bedroom (침실)
-  { id: 31, category: 'bedroom', title: '좁은 방 공간 활용', content: '침대 밑 수납함을 활용하면 계절 옷 정리가 쉬워요. 압축팩도 추천합니다.', author: '공간술사', likes: 38 },
-  { id: 32, category: 'bedroom', title: '숙면을 위한 조명', content: '자기 30분 전에는 주황색 계열의 간접 조명을 사용해 멜라토닌 분비를 도와주세요.', author: '잠만보', likes: 15 },
-  { id: 33, category: 'bedroom', title: '침대 매트리스 청소', content: '베이킹소다를 뿌리고 30분 뒤 청소기로 빨아들이면 먼지와 진드기가 제거됩니다.', author: '꿀잠', likes: 32 },
-  { id: 34, category: 'bedroom', title: '겨울철 난방비 절약', content: '창문에 뽁뽁이(에어캡)를 붙이면 단열 효과가 좋아집니다.', author: '알뜰왕', likes: 40 },
-  { id: 35, category: 'bedroom', title: '옷장 습기 제거', content: '신문지나 굵은 소금을 컵에 담아 넣어두면 제습 효과가 있습니다.', author: '뽀송이', likes: 23 },
-  { id: 36, category: 'bedroom', title: '블라인드 먼지 청소', content: '목장갑을 끼고 블라인드 살을 훑으면 쉽게 먼지를 닦을 수 있습니다.', author: '먼지사냥', likes: 21 },
-  { id: 37, category: 'bedroom', title: '니트 늘어짐 방지', content: '옷걸이 대신 접어서 보관하거나, 반으로 접어 옷걸이에 걸치세요.', author: '패션피플', likes: 27 },
-  { id: 38, category: 'bedroom', title: '베개 솜 살리기', content: '햇볕 좋은 날 두들겨 말려주면 솜이 다시 살아납니다.', author: '폭신폭신', likes: 18 },
-  { id: 39, category: 'bedroom', title: '모기 퇴치', content: '계피를 망에 넣어 걸어두거나 허브 화분을 두면 모기가 싫어합니다.', author: '모기지옥', likes: 25 },
-  { id: 40, category: 'bedroom', title: '가구 자국 없애기', content: '카펫에 가구 자국이 남았다면 얼음을 올려두고 녹을 때까지 기다려보세요.', author: '복구왕', likes: 16 },
-  { id: 41, category: 'bedroom', title: '화장대 정리', content: '투명 아크릴 정리함을 사용하면 물건 찾기가 훨씬 수월해집니다.', author: '뷰티꿈나무', likes: 29 },
-  { id: 42, category: 'bedroom', title: '커튼 세탁', content: '스타킹에 넣어 울 코스로 세탁하면 손상 없이 깨끗해집니다.', author: '커튼사랑', likes: 14 },
-  { id: 43, category: 'bedroom', title: '침실 공기 정화', content: '산세베리아나 스투키 같은 식물을 두면 공기 정화에 도움이 됩니다.', author: '식집사', likes: 33 },
+  // --- Bedroom & Living (침실/거실) 31-50 ---
+  { 
+    id: 31, category: 'bedroom', title: '침구류 진드기 퇴치', 
+    content: '계피 스프레이를 뿌린 뒤 털어주세요.',
+    details: '진드기는 계피의 시나몬 성분을 극도로 싫어합니다.',
+    steps: ['에탄올에 계피 조각을 넣어 1주일 숙성합니다.', '분무기에 담아 침구에 골고루 뿌립니다.', '1시간 뒤 이불을 세게 털어 죽은 진드기를 제거합니다.']
+  },
+  { 
+    id: 32, category: 'bedroom', title: '겨울철 정전기 방지', 
+    content: '옷 안쪽에 클립을 끼워두세요.',
+    details: '금속 성분이 전기를 흘려보내 정전기 축적을 막습니다.',
+    steps: ['클립이나 핀을 옷 소매 안쪽 등에 끼웁니다.', '또는 분무기로 물을 살짝 뿌려 습도를 높입니다.', '섬유유연제를 사용하는 것도 정전기 방지에 큰 도움이 됩니다.']
+  },
+  { 
+    id: 33, category: 'bedroom', title: '매트리스 냄새 제거', 
+    content: '베이킹소다를 뿌리고 청소기로 흡입하세요.',
+    details: '가루가 매트리스 깊숙한 곳의 습기와 냄새를 흡수합니다.',
+    steps: ['매트리스 위에 베이킹소다 가루를 골고루 뿌립니다.', '30분~1시간 정도 방치합니다.', '청소기의 브러시 노즐로 가루를 꼼꼼히 빨아들입니다.']
+  },
+  { 
+    id: 34, category: 'livingroom', title: 'TV 먼지 방지', 
+    content: '정전기 방지제를 묻힌 천으로 닦으세요.',
+    details: 'TV 화면은 정전기로 인해 먼지가 금방 쌓입니다.',
+    steps: ['천에 린스나 정전기 방지액을 살짝 묻힙니다.', '화면 표면을 가볍게 닦아 코팅합니다.', '이후 먼지가 훨씬 덜 내려앉는 것을 볼 수 있습니다.']
+  },
+  { 
+    id: 35, category: 'livingroom', title: '바닥 기름기 제거', 
+    content: '소주를 뿌려 닦으면 뽀송해집니다.',
+    details: '삼겹살 조리 후 끈적이는 바닥은 알코올이 최고입니다.',
+    steps: ['분무기에 소주를 담아 바닥에 뿌립니다.', '마른 걸레로 닦아냅니다.', '알코올이 휘발되면서 기름기를 완벽하게 잡아줍니다.']
+  },
+  { 
+    id: 36, category: 'bedroom', title: '옷장 제습법', 
+    content: '신문지를 옷 사이에 걸어두세요.',
+    details: '신문지의 성긴 조직이 공기 중 수분을 흡수합니다.',
+    steps: ['옷걸이에 신문지를 겹쳐 걸어 옷 사이사이에 둡니다.', '서랍장 바닥에도 신문지를 깔아줍니다.', '주기적으로 신문지를 교체해주면 곰팡이를 예방합니다.']
+  },
+  { 
+    id: 37, category: 'livingroom', title: '벽지 낙서 지우기', 
+    content: '치약이나 식빵을 활용해 보세요.',
+    details: '볼펜 자국은 치약으로, 연필은 식빵의 찰기로 지웁니다.',
+    steps: ['면봉에 치약을 묻혀 볼펜 자국을 살살 문지릅니다.', '연필 낙서는 식빵 속살을 뭉쳐 지우개처럼 씁니다.', '너무 세게 하면 벽지가 상할 수 있으니 주의하세요.']
+  },
+  { 
+    id: 38, category: 'livingroom', title: '가구 흠집 가리기', 
+    content: '호두 알맹이로 문지르면 완화됩니다.',
+    details: '호두의 유분이 흠집을 메우고 코팅해줍니다.',
+    steps: ['어두운색 나무 가구의 흠집 부위를 찾습니다.', '호두 알맹이로 해당 부위를 꾹꾹 눌러 문지릅니다.', '부드러운 천으로 닦아 마무리하면 감쪽같습니다.']
+  },
+  { 
+    id: 39, category: 'bedroom', title: '청바지 세탁법', 
+    content: '뒤집어서 세탁망에 넣고 하세요.',
+    details: '물 빠짐을 방지하고 청바지의 형태를 보존하는 방법입니다.',
+    steps: ['청바지의 단추와 지퍼를 채우고 뒤집습니다.', '세탁망에 넣어 단독 세탁하거나 찬물로 합니다.', '햇볕보다는 그늘에서 거꾸로 매달아 말리는 게 좋습니다.']
+  },
+  { 
+    id: 40, category: 'livingroom', title: '스티커 자국 제거', 
+    content: '드라이기 열이나 선크림을 쓰세요.',
+    details: '접착 성분은 열과 유분에 약합니다.',
+    steps: ['스티커에 드라이기로 뜨거운 바람을 1분 쐽니다.', '남은 자국에 선크림을 듬뿍 바르고 5분 둡니다.', '물티슈로 닦아내면 끈적임이 사라집니다.']
+  },
 
-  // Living Room (거실)
-  { id: 44, category: 'livingroom', title: '먼지 정전기 방지', content: '가구 닦을 때 린스를 소량 섞은 물로 닦으면 정전기가 방지되어 먼지가 덜 쌓입니다.', author: '먼지싫어', likes: 29 },
-  { id: 45, category: 'livingroom', title: '멀티탭 선 정리', content: '휴지심을 활용해 전선을 각각 넣어 보관하면 엉키지 않고 깔끔합니다.', author: '정리왕', likes: 27 },
-  { id: 46, category: 'livingroom', title: '카펫 얼룩 제거', content: '베이킹소다를 뿌리고 식초를 뿌린 뒤 닦아내면 얼룩이 지워집니다.', author: '얼룩지우개', likes: 24 },
-  { id: 47, category: 'livingroom', title: '리모컨 청소', content: '손 소독제를 솜에 묻혀 닦으면 세균과 기름때가 제거됩니다.', author: '채널고정', likes: 17 },
-  { id: 48, category: 'livingroom', title: '소파 냄새 제거', content: '베이킹소다를 뿌리고 1~2시간 뒤 청소기로 빨아들이세요.', author: '소파사랑', likes: 20 },
-  { id: 49, category: 'livingroom', title: '벽지 낙서 지우기', content: '치약이나 식빵으로 문지르면 볼펜 자국 등을 지울 수 있습니다.', author: '낙서금지', likes: 31 },
-  { id: 50, category: 'livingroom', title: '바닥 긁힘 방지', content: '가구 다리에 테니스 공을 끼우거나 전용 패드를 부착하세요.', author: '층간소음', likes: 15 },
-  { id: 51, category: 'livingroom', title: '스티커 자국 제거', content: '헤어드라이어로 열을 가하거나 선크림을 바르고 닦아내세요.', author: '스티커', likes: 35 },
-  { id: 52, category: 'livingroom', title: '유리창 닦기', content: '신문지에 물을 묻혀 닦으면 얼룩 없이 깨끗해집니다.', author: '투명창', likes: 19 },
-  { id: 53, category: 'livingroom', title: 'TV 화면 청소', content: '극세사 천에 소독용 에탄올을 살짝 묻혀 부드럽게 닦아주세요.', author: '선명화질', likes: 22 },
-  { id: 54, category: 'livingroom', title: '디퓨저 재활용', content: '남은 향수와 에탄올을 3:7 비율로 섞고 우드 스틱을 꽂으면 디퓨저가 됩니다.', author: '향기솔솔', likes: 28 },
-  { id: 55, category: 'livingroom', title: '콘센트 안전', content: '사용하지 않는 콘센트에는 안전 커버를 씌워 먼지와 감전 사고를 예방하세요.', author: '안전제일', likes: 12 },
-  { id: 56, category: 'livingroom', title: '원목 가구 관리', content: '호두 알맹이로 긁힌 부분을 문지르면 스크래치가 완화됩니다.', author: '우드러버', likes: 26 },
+  // --- Utility & Entrance (기타/현관) 41-60 ---
+  { 
+    id: 41, category: 'utility', title: '옷에 묻은 껌 제거', 
+    content: '얼음으로 딱딱하게 굳힌 뒤 떼세요.',
+    details: '껌의 끈적이는 성분을 온도로 낮춰 응고시키는 원리입니다.',
+    steps: ['비닐봉지에 얼음을 담아 껌 위에 올립니다.', '껌이 돌처럼 딱딱해질 때까지 기다립니다.', '손톱이나 칼끝으로 가볍게 밀어내면 쏙 떨어집니다.']
+  },
+  { 
+    id: 42, category: 'utility', title: '와이셔츠 목 때', 
+    content: '샴푸를 바르고 10분 뒤 세탁하세요.',
+    details: '목 부위의 피지는 일반 세제보다 단백질 분해력이 좋은 샴푸에 잘 지워집니다.',
+    steps: ['오염된 깃 부위에 샴푸를 직접 바릅니다.', '10분 정도 방치하여 때를 불립니다.', '칫솔로 가볍게 문지른 뒤 평소처럼 세탁합니다.']
+  },
+  { 
+    id: 43, category: 'utility', title: '흰 옷 누런 때 제거', 
+    content: '레몬 껍질과 함께 삶으세요.',
+    details: '레몬의 산성 성분이 천연 표백제 역할을 합니다.',
+    steps: ['냄비에 물과 빨래를 넣습니다.', '레몬 껍질 2~3 조각을 넣습니다.', '15분 정도 삶으면 옷이 눈부시게 하얘집니다.']
+  },
+  { 
+    id: 44, category: 'utility', title: '운동화 냄새 제거', 
+    content: '10원짜리 동전이나 녹차 티백을 넣으세요.',
+    details: '동전의 구리 성분과 녹차의 타닌 성분이 냄새균을 잡습니다.',
+    steps: ['신발 속에 10원 동전을 3~4개씩 넣습니다.', '또는 다 쓴 녹차 티백을 말려 넣어둡니다.', '하루만 지나도 냄새가 현저히 줄어듭니다.']
+  },
+  { 
+    id: 45, category: 'utility', title: '다리미 바닥 청소', 
+    content: '굵은 소금을 다리미로 문지르세요.',
+    details: '바닥에 눌어붙은 이물질을 소금의 입자가 긁어내줍니다.',
+    steps: ['신문지 위에 굵은 소금을 넉넉히 뿌립니다.', '다리미 온도를 높인 뒤 소금 위를 다리듯 문지릅니다.', '바닥이 깨끗해지면 젖은 수건으로 한번 닦아 마무리합니다.']
+  },
+  { 
+    id: 46, category: 'entrance', title: '우산 녹 방지', 
+    content: '손잡이를 아래로 해서 말리세요.',
+    details: '우산 꼭지를 위로 하면 물기가 살대로 흘러 녹이 생깁니다.',
+    steps: ['사용한 우산은 실내에서 활짝 펴서 말립니다.', '세워둘 때는 반드시 손잡이가 바닥으로 가게 합니다.', '살대에 식용유를 면봉으로 바르면 녹 방지에 탁월합니다.']
+  },
+  { 
+    id: 47, category: 'balcony', title: '창틀 먼지 청소', 
+    content: '굵은 소금과 신문지를 활용하세요.',
+    details: '소금이 먼지를 흡착하고 신문지가 좁은 틈을 닦아줍니다.',
+    steps: ['창틀에 굵은 소금을 골고루 뿌립니다.', '물을 적신 신문지를 그 위에 덮고 10분 둡니다.', '신문지로 먼지를 밀어내듯 닦아냅니다.']
+  },
+  { 
+    id: 48, category: 'utility', title: '수건 냄새 제거', 
+    content: '마지막 헹굼 시 식초를 넣으세요.',
+    details: '수건 특유의 쿰쿰한 냄새는 식초의 살균 성분으로 잡을 수 있습니다.',
+    steps: ['세탁기 마지막 헹굼 단계에서 식초 한 컵을 넣습니다.', '섬유유연제 대신 식초를 쓰면 흡수력도 좋아집니다.', '직사광선보다는 통풍이 잘되는 그늘에서 말리세요.']
+  },
+  { 
+    id: 49, category: 'utility', title: '스테이플러 심 제거', 
+    content: '심 뒷부분을 연필 끝으로 밀어보세요.',
+    details: '전용 도구가 없을 때 종이가 덜 찢어지게 하는 방법입니다.',
+    steps: ['박힌 심의 뒷부분(구부러진 쪽)을 곧게 폅니다.', '심의 평평한 쪽에서 밀어내어 공간을 만듭니다.', '손톱이나 도구로 조심스럽게 뽑아냅니다.']
+  },
+  { 
+    id: 50, category: 'kitchen', title: '냉동 고기 빨리 해동', 
+    content: '알루미늄 냄비 사이에 끼워두세요.',
+    details: '알루미늄의 높은 열전도율이 고기의 냉기를 냄비로 빠르게 전도합니다.',
+    steps: ['알루미늄 냄비 두 개를 준비합니다.', '한 냄비를 뒤집고 그 위에 고기를 올립니다.', '나머지 냄비 바닥이 고기를 누르게 덮어 10분 둡니다.']
+  },
 
-  // Entrance (현관)
-  { id: 57, category: 'entrance', title: '신발장 습기 제거', content: '신문지를 말아 신발 안에 넣어두면 습기와 냄새를 동시에 잡아요.', author: '상쾌남', likes: 18 },
-  { id: 58, category: 'entrance', title: '택배 운송장 제거', content: '운송장에 물파스를 바르거나 아세톤을 묻히면 개인정보가 싹 지워집니다.', author: '쇼핑몰', likes: 63 },
-  { id: 59, category: 'entrance', title: '현관 타일 청소', content: '베이킹소다수를 뿌리고 솔로 문지르면 흙먼지가 말끔히 사라집니다.', author: '깨끗한입구', likes: 21 },
-  { id: 60, category: 'entrance', title: '우산 보관법', content: '사용 후 활짝 펴서 물기를 완전히 말린 후 보관해야 녹이 슬지 않습니다.', author: '비오는날', likes: 16 },
-  { id: 61, category: 'entrance', title: '현관 센서등', content: '센서등이 너무 자주 켜지면 센서 부분에 반투명 테이프를 붙여 민감도를 조절하세요.', author: '전기절약', likes: 14 },
-  { id: 62, category: 'entrance', title: '도어락 배터리', content: '방전 시 9V 건전지를 비상 전원 단자에 대면 문을 열 수 있습니다.', author: '열려라참깨', likes: 48 },
-  { id: 63, category: 'entrance', title: '신발 냄새 제거', content: '녹차 티백이나 10원짜리 동전을 넣어두면 탈취 효과가 있습니다.', author: '발냄새굿바이', likes: 30 },
-  { id: 64, category: 'entrance', title: '현관문 뻑뻑함', content: '경첩 부분에 WD-40이나 식용유를 살짝 바르면 부드러워집니다.', author: '부드럽게', likes: 25 },
-  { id: 65, category: 'entrance', title: '열쇠 관리', content: '열쇠 끝에 매니큐어로 색을 칠해두면 용도별로 구분하기 쉽습니다.', author: '키마스터', likes: 19 },
-  { id: 66, category: 'entrance', title: '비에 젖은 신발', content: '맥주병에 꽂아 말리면 통풍이 잘 되어 빨리 마릅니다.', author: '맥주병', likes: 23 },
-  { id: 67, category: 'entrance', title: '부츠 보관', content: '페트병이나 신문지를 넣어두면 모양이 망가지지 않습니다.', author: '부츠코디', likes: 20 },
-  { id: 68, category: 'entrance', title: '중문 활용', content: '중문이 없다면 압축봉과 커튼으로 간이 중문을 만들면 단열과 방음에 좋습니다.', author: '공간분리', likes: 34 },
-
-  // Balcony (베란다)
-  { id: 69, category: 'balcony', title: '창틀 먼지 청소', content: '굵은 소금을 창틀에 뿌리고 신문지로 문지르면 먼지가 잘 흡수됩니다.', author: '청소장인', likes: 22 },
-  { id: 70, category: 'balcony', title: '화분 벌레 퇴치', content: '우유와 물을 섞어 분무기로 뿌려주면 진딧물 예방에 도움이 됩니다.', author: '가드너', likes: 27 },
-  { id: 71, category: 'balcony', title: '베란다 결로 방지', content: '하루 2번 이상 환기하고, 제습제를 곳곳에 배치하세요.', author: '곰팡이노', likes: 32 },
-  { id: 72, category: 'balcony', title: '방충망 청소', content: '수면 양말을 손에 끼고 닦거나, 신문지를 붙이고 물을 뿌려 먼지를 흡착시키세요.', author: '미세먼지', likes: 29 },
-  { id: 73, category: 'balcony', title: '빈 병 활용', content: '페트병을 반으로 잘라 화분이나 수납함으로 활용해보세요.', author: '리사이클', likes: 24 },
-  { id: 74, category: 'balcony', title: '빨래 건조', content: '건조대 아래에 신문지를 깔아두거나 선풍기를 틀면 빨래가 더 빨리 마릅니다.', author: '뽀송빨래', likes: 36 },
-  { id: 75, category: 'balcony', title: '베란다 타일 줄눈', content: '양초를 발라두면 물때와 곰팡이를 예방할 수 있습니다.', author: '줄눈시공', likes: 18 },
-  { id: 76, category: 'balcony', title: '자전거 보관', content: '바퀴에 흙이 묻지 않게 신문지나 박스를 깔고 커버를 씌워 보관하세요.', author: '라이더', likes: 15 },
-  { id: 77, category: 'balcony', title: '유리창 뽁뽁이', content: '물만 뿌려서 붙이는 단열 시트나 뽁뽁이는 겨울철 필수템입니다.', author: '따뜻한겨울', likes: 41 },
-  { id: 78, category: 'balcony', title: '폐가전 처리', content: '소형 가전은 주민센터 수거함에, 대형 가전은 무상 방문 수거 서비스를 이용하세요.', author: '버리기', likes: 38 },
-  { id: 79, category: 'balcony', title: '텃밭 가꾸기', content: '대파 뿌리를 심으면 집에서도 쉽게 대파를 길러 먹을 수 있습니다.', author: '파테크', likes: 45 },
-  { id: 80, category: 'balcony', title: '베란다 슬리퍼', content: '구멍 뚫린 욕실화는 물이 고이지 않아 베란다용으로도 좋습니다.', author: '슬리퍼', likes: 13 },
-  { id: 81, category: 'balcony', title: '우수관 냄새', content: '전용 트랩을 설치하거나 안 쓰는 비닐봉지에 물을 담아 덮어두세요.', author: '냄새차단', likes: 26 },
-
-  // Utility (다용도실)
-  { id: 82, category: 'utility', title: '세탁기 냄새 관리', content: '세탁 후에는 항상 세탁기 문을 열어두어 내부를 건조시켜야 곰팡이를 예방합니다.', author: '살림꾼', likes: 45 },
-  { id: 83, category: 'utility', title: '흰 옷 얼룩 제거', content: '과탄산소다를 녹인 따뜻한 물에 담가두면 하얗게 변합니다.', author: '표백왕', likes: 39 },
-  { id: 84, category: 'utility', title: '검은 옷 먼지', content: '세탁 시 식초를 조금 넣거나 섬유유연제를 사용하면 정전기로 인한 먼지 부착이 줄어듭니다.', author: '블랙패션', likes: 22 },
-  { id: 85, category: 'utility', title: '줄어든 니트 복구', content: '린스를 푼 미지근한 물에 담가두었다가 살살 늘려주세요.', author: '니트구조대', likes: 34 },
-  { id: 86, category: 'utility', title: '세탁조 청소', content: '전용 클리너나 과탄산소다를 넣고 통세척 코스를 돌려주세요.', author: '통돌이', likes: 31 },
-  { id: 87, category: 'utility', title: '빨래 쉰내 제거', content: '헹굼 단계에서 식초를 넣거나, 끓는 물에 삶으면 냄새가 사라집니다.', author: '냄새박사', likes: 28 },
-  { id: 88, category: 'utility', title: '운동화 세탁', content: '비닐봉지에 세제와 따뜻한 물을 넣고 흔든 뒤 불려두면 때가 잘 빠집니다.', author: '새신을신고', likes: 37 },
-  { id: 89, category: 'utility', title: '패딩 세탁', content: '중성세제로 손세탁하거나 울 코스로 단독 세탁하고, 눕혀서 말린 뒤 두들겨주세요.', author: '겨울준비', likes: 25 },
-  { id: 90, category: 'utility', title: '와이셔츠 목 때', content: '샴푸나 주방세제를 발라두었다가 세탁하면 깨끗해집니다.', author: '직장인', likes: 23 },
-  { id: 91, category: 'utility', title: '분리수거 팁', content: '페트병 라벨은 반드시 제거하고, 캔은 밟아서 부피를 줄여 배출하세요.', author: '지구지킴이', likes: 42 },
-  { id: 92, category: 'utility', title: '음식물 쓰레기', content: '물기를 최대한 제거하고 냉동실에 얼려서 보관하면 냄새와 벌레를 막을 수 있습니다.', author: '깔끔주방', likes: 50 },
-  { id: 93, category: 'utility', title: '건전지 폐기', content: '일반 쓰레기가 아닌 폐건전지 수거함에 따로 배출해야 합니다.', author: '환경보호', likes: 29 },
-  { id: 94, category: 'utility', title: '아이스팩 처리', content: '물로 된 팩은 잘라서 물을 버리고, 젤 타입은 종량제 봉투에 버리거나 전용 수거함을 이용하세요.', author: '분리수거', likes: 33 },
-  { id: 95, category: 'utility', title: '세제 소분', content: '대용량 세제는 펌프 용기에 소분해서 쓰면 사용하기 편하고 경제적입니다.', author: '소분왕', likes: 20 },
-  { id: 96, category: 'utility', title: '청소 도구 정리', content: '압축봉이나 후크를 활용해 벽에 걸어두면 공간 차지를 덜 하고 건조도 빠릅니다.', author: '정리의신', likes: 27 },
-  { id: 97, category: 'utility', title: '보일러실 동파 방지', content: '헌 옷이나 이불로 보일러 배관을 감싸주세요.', author: '겨울나기', likes: 35 },
-  { id: 98, category: 'utility', title: '핏자국 제거', content: '찬물에 바로 씻거나 과산화수소를 뿌리면 잘 지워집니다. 따뜻한 물은 절대 금물!', author: '응급처치', likes: 19 },
-  { id: 99, category: 'utility', title: '껌 떼기', content: '얼음으로 문질러 딱딱하게 만든 뒤 떼어내거나 식용유를 발라 녹여보세요.', author: '껌딱지', likes: 16 },
-  { id: 100, category: 'utility', title: '녹슨 가위', content: '자외선 차단제를 바르고 닦아주거나 콜라에 담가두면 녹이 제거됩니다.', author: '가위손', likes: 21 },
+  // --- Quick Tips (생활 밀착형 팁) 51-100 ---
+  { id: 51, category: 'kitchen', title: '김치통 냄새', content: '설탕물을 채워 하루 두세요.', details: '설탕의 삼투압 현상이 용기에 밴 냄새를 뽑아냅니다.', steps: ['설탕과 물을 1:2로 섞어 담습니다.', '뒤집어서 반나절 더 둡니다.', '햇볕에 말리면 더 좋습니다.'] },
+  { id: 52, category: 'bathroom', title: '샤워커튼 곰팡이', content: '소금물에 담가두면 예방됩니다.', details: '소금의 삼투압이 곰팡이 번식을 막습니다.', steps: ['새 커튼을 사면 소금물에 한번 헹굽니다.', '곰팡이가 생기면 식초 물로 닦으세요.'] },
+  { id: 53, category: 'bedroom', title: '베개 높이 조절', content: '수건을 돌돌 말아 활용하세요.', details: '체형에 맞는 높이가 숙면에 중요합니다.', steps: ['낮으면 수건을 펴서 밑에 깝니다.', '높으면 솜을 뺍니다.'] },
+  { id: 54, category: 'livingroom', title: '리모컨 청소', content: '손소독제를 면봉에 묻혀 닦으세요.', details: '틈새 세균 제거에 효과적입니다.', steps: ['건전지를 빼고 닦습니다.', '물기는 금방 날아갑니다.'] },
+  { id: 55, category: 'entrance', title: '현관 바닥 청소', content: '젖은 신문지를 찢어 뿌리세요.', details: '신문지가 흙먼지를 흡착해 날리지 않습니다.', steps: ['신문지를 물에 적셔 찢어 뿌립니다.', '빗자루로 신문지와 함께 씁니다.'] },
+  { id: 56, category: 'utility', title: '세탁기 내부 청소', content: '과탄산소다 넣고 통세척 하세요.', details: '숨어있는 물때를 불려 제거합니다.', steps: ['뜨거운 물을 가득 채웁니다.', '과탄산소다를 녹여 1시간 불린 뒤 돌립니다.'] },
+  { id: 57, category: 'kitchen', title: '포장지 쉽게 뜯기', content: '나무젓가락 사이에 끼워 돌리세요.', details: '지렛대 원리로 힘들이지 않고 뜯습니다.', steps: ['포장지 끝을 나무젓가락 사이에 넣습니다.', '젓가락을 한 방향으로 돌립니다.'] },
+  { id: 58, category: 'bathroom', title: '비누 무름 방지', content: '고무줄을 비누각에 감으세요.', details: '비누가 바닥에 닿지 않아 건조가 빠릅니다.', steps: ['비누각에 가로세로로 고무줄을 감습니다.', '그 위에 비누를 올립니다.'] },
+  { id: 59, category: 'bedroom', title: '이불 커버 씌우기', content: '커버를 뒤집어 이불을 묶고 뒤집으세요.', details: '혼자서도 쉽게 커버를 교체하는 팁입니다.', steps: ['커버를 뒤집어 펼칩니다.', '이불을 위에 올리고 끈을 묶습니다.', '뒤집어서 정리합니다.'] },
+  { id: 60, category: 'utility', title: '옷에 묻은 립스틱', content: '클렌징 오일을 발라 문지르세요.', details: '화장품 성분이므로 같은 클렌저가 잘 듣습니다.', steps: ['자국에 오일을 바릅니다.', '조심스럽게 문지른 뒤 세탁합니다.'] },
+  { id: 61, category: 'kitchen', title: '감자 싹 방지', content: '사과 한 알을 함께 넣어두세요.', details: '사과의 에틸렌 가스가 감자 싹을 억제합니다.', steps: ['박스에 감자를 담습니다.', '사과 1개를 중앙에 넣습니다.'] },
+  { id: 62, category: 'bathroom', title: '칫솔 통 물때', content: '바닥에 동전을 넣어두세요.', details: '동전의 구리 성분이 곰팡이 번식을 막습니다.', steps: ['칫솔 통 바닥에 10원 동전을 넣습니다.', '주기적으로 동전을 닦아줍니다.'] },
+  { id: 63, category: 'bedroom', title: '옷걸이 흘러내림', content: '어깨 부분에 고무줄을 감으세요.', details: '마찰력을 높여 옷이 떨어지지 않게 합니다.', steps: ['옷걸이 양쪽 끝에 고무줄을 여러 번 감습니다.'] },
+  { id: 64, category: 'livingroom', title: '벽장식 못 자국', content: '흰 치약을 구멍에 채워 넣으세요.', details: '벽지와 비슷한 색의 치약이 구멍을 메웁니다.', steps: ['구멍에 치약을 짜 넣고 평평하게 폅니다.'] },
+  { id: 65, category: 'entrance', title: '신발 냄새 방지', content: '커피 가루를 주머니에 담아 넣으세요.', details: '제습과 탈취를 동시에 해줍니다.', steps: ['말린 커피 가루를 다시 백에 담습니다.'] },
+  { id: 66, category: 'utility', title: '옷에 묻은 볼펜', content: '물파스로 문질러 지우세요.', details: '물파스의 유기용제가 잉크를 녹여줍니다.', steps: ['자국 뒤에 천을 대고 물파스를 바릅니다.'] },
+  { id: 67, category: 'kitchen', title: '남은 식빵 활용', content: '냉장고 탈취제로 사용하세요.', details: '탄 식빵은 숯과 같은 효과를 냅니다.', steps: ['유통기한 지난 식빵을 바짝 구워 넣습니다.'] },
+  { id: 68, category: 'bathroom', title: '수건의 흡수력', content: '섬유유연제 사용을 줄이세요.', details: '유연제가 수건 섬유를 코팅해 흡수력을 떨어뜨립니다.', steps: ['수건 세탁 시에는 유연제 대신 식초를 쓰세요.'] },
+  { id: 70, category: 'utility', title: '세탁소 옷걸이 활용', content: '구부려서 바지 걸이로 만드세요.', details: '자유롭게 모양을 변형할 수 있습니다.', steps: ['양 끝을 위로 구부려 민소매 걸이로 씁니다.'] },
+  { id: 71, category: 'kitchen', title: '식초 소독법', content: '도마나 칼을 식초로 닦아주세요.', details: '천연 살균제 역할을 합니다.', steps: ['도마에 식초를 뿌리고 5분 뒤 헹굽니다.'] },
+  { id: 72, category: 'bathroom', title: '욕실 냄새 차단', content: '비닐봉지에 물을 담아 하수구에 두세요.', details: '물 주머니가 무게로 냄새를 막습니다.', steps: ['비닐봉지에 물을 채워 묶고 하수구 위에 둡니다.'] },
+  { id: 73, category: 'bedroom', title: '옷 보관 팁', content: '밝은색부터 어두운색 순으로 정리하세요.', details: '찾기 쉽고 보기에도 깔끔합니다.', steps: ['색상별로 분류하여 서랍에 넣습니다.'] },
+  { id: 74, category: 'livingroom', title: '화분 진딧물', content: '우유를 희석해 잎에 뿌려주세요.', details: '우유가 마르며 진딧물을 질식시킵니다.', steps: ['우유와 물을 1:1로 섞어 뿌립니다.'] },
+  { id: 75, category: 'entrance', title: '신발 밑창 소음', content: '밑창에 샌드페이퍼를 붙여보세요.', details: '마찰력을 높여 소음을 줄입니다.', steps: ['밑창의 매끄러운 부위에 사포를 붙입니다.'] },
+  { id: 76, category: 'utility', title: '니트 보풀 제거', content: '눈썹 칼로 살살 긁어내세요.', details: '옷감 손상을 줄이며 깔끔하게 제거합니다.', steps: ['보풀 부위를 칼날로 비스듬히 긁습니다.'] },
+  { id: 77, category: 'kitchen', title: '기름병 흐름 방지', content: '입구에 키친타월을 감아두세요.', details: '흐르는 기름을 흡수해 병이 깨끗합니다.', steps: ['고무줄로 키친타월을 입구 밑에 고정합니다.'] },
+  { id: 78, category: 'bathroom', title: '비누 거품 용기', content: '물과 핸드워시를 3:1로 섞으세요.', details: '절약하며 풍성한 거품을 낼 수 있습니다.', steps: ['전용 거품 용기에 담아 사용합니다.'] },
+  { id: 79, category: 'bedroom', title: '침대 밑 청소', content: '스타킹을 옷걸이에 씌워 닦으세요.', details: '정전기가 먼지를 강력하게 끌어당깁니다.', steps: ['옷걸이를 길게 펴서 스타킹을 씌웁니다.'] },
+  { id: 80, category: 'utility', title: '신발 젖었을 때', content: '신문지를 뭉쳐 넣고 드라이하세요.', details: '습기를 빠르게 제거해 형태를 유지합니다.', steps: ['신문지를 꽉 채워 넣고 바람을 쐽니다.'] },
+  { id: 81, category: 'kitchen', title: '오래된 우유 활용', content: '가죽 가구를 닦을 때 사용하세요.', details: '우유의 지방 성분이 가죽에 영양을 줍니다.', steps: ['천에 우유를 묻혀 가볍게 닦습니다.'] },
+  { id: 82, category: 'bathroom', title: '욕실 거울 물때', content: '감자 껍질로 문지르면 지워집니다.', details: '감자의 전분 성분이 때를 제거합니다.', steps: ['거울 표면을 감자 안쪽으로 문지릅니다.'] },
+  { id: 83, category: 'bedroom', title: '커튼 먼지 제거', content: '분무기로 물을 뿌려 털어내세요.', details: '먼지가 날리지 않고 아래로 떨어집니다.', steps: ['물을 살짝 뿌리고 위에서 아래로 텁니다.'] },
+  { id: 84, category: 'livingroom', title: '카펫 먼지 청소', content: '굵은 소금을 뿌리고 청소기 돌리세요.', details: '소금이 미세 먼지를 잡고 올라옵니다.', steps: ['소금을 뿌리고 10분 뒤 흡입합니다.'] },
+  { id: 85, category: 'entrance', title: '택배 정보 지우기', content: '아세톤이나 선크림을 발라 문지르세요.', details: '개인 정보를 안전하게 지우는 방법입니다.', steps: ['글자 부위에 듬뿍 발라 문지릅니다.'] },
+  { id: 86, category: 'utility', title: '와이셔츠 다림질', content: '카라부터 소매, 몸판 순으로 하세요.', details: '구김이 덜 가고 효율적인 순서입니다.', steps: ['작은 부위에서 넓은 부위 순으로 합니다.'] },
+  { id: 87, category: 'kitchen', title: '냄비 뚜껑 보관', content: '파일 꽂이를 활용해 세워두세요.', details: '공간을 적게 차지하고 찾기 쉽습니다.', steps: ['싱크대 서랍에 파일 꽂이를 둡니다.'] },
+  { id: 88, category: 'bathroom', title: '수건 접는 법', content: '호텔식으로 말아 접으면 예쁩니다.', details: '보기에도 좋고 풀리지 않아 깔끔합니다.', steps: ['삼각형으로 접어 돌돌 말아 끝을 넣습니다.'] },
+  { id: 89, category: 'bedroom', title: '베개 커버 세탁', content: '주 1회 이상은 반드시 하세요.', details: '피부 트러블 예방에 가장 중요합니다.', steps: ['최소 일주일에 한 번은 교체하세요.'] },
+  { id: 90, category: 'utility', title: '단추 안 떨어지게', content: '투명 매니큐어를 실 위에 바르세요.', details: '실이 풀리지 않게 고정해줍니다.', steps: ['단추 중앙의 실 부위에 덧바릅니다.'] },
+  { id: 91, category: 'kitchen', title: '레몬즙 짜기', content: '전자레인지에 20초 돌리고 짜세요.', details: '과육이 부드러워져 즙이 더 많이 나옵니다.', steps: ['통째로 살짝 가열한 뒤 즙을 냅니다.'] },
+  { id: 92, category: 'bathroom', title: '린스로 청소', content: '세면대나 수도꼭지를 닦으세요.', details: '코팅 효과로 물때가 덜 생깁니다.', steps: ['마른 천에 린스를 묻혀 닦습니다.'] },
+  { id: 93, category: 'bedroom', title: '잠 안 올 때', content: '따뜻한 우유 한 잔을 마시세요.', details: '트립토판 성분이 숙면을 돕습니다.', steps: ['자기 전 따뜻하게 데워 마십니다.'] },
+  { id: 94, category: 'livingroom', title: '멀티탭 먼지', content: '면봉으로 틈새를 닦아주세요.', details: '먼지로 인한 화재 위험을 방지합니다.', steps: ['전원을 끄고 구석구석 닦아냅니다.'] },
+  { id: 95, category: 'entrance', title: '우산 보관법', content: '마른 뒤 접어서 보관하세요.', details: '젖은 채 접으면 살대가 녹슬 수 있습니다.', steps: ['실내에서 완전히 말린 뒤 정리합니다.'] },
+  { id: 96, category: 'utility', title: '지퍼 뻑뻑할 때', content: '연필심이나 양초를 문지르세요.', details: '윤활제 역할을 하여 부드러워집니다.', steps: ['지퍼 이빨 부분에 골고루 문지릅니다.'] },
+  { id: 97, category: 'kitchen', title: '남은 소주 활용', content: '생선 조리 시 비린내를 잡으세요.', details: '알코올이 휘발되며 냄새를 가져갑니다.', steps: ['조리 마지막 단계에 한 큰술 넣습니다.'] },
+  { id: 98, category: 'bathroom', title: '바닥 줄눈 때', content: '베이킹소다와 물을 섞어 바르세요.', details: '때를 불려 쉽게 닦아낼 수 있습니다.', steps: ['반죽을 발라 30분 뒤 닦습니다.'] },
+  { id: 99, category: 'bedroom', title: '향기로운 옷장', content: '다 쓴 향수병을 옷장에 두세요.', details: '남은 향기가 은은하게 옷에 뱁니다.', steps: ['뚜껑을 열어 옷장 구석에 둡니다.'] },
+  { id: 100, category: 'utility', title: '못 박을 때', content: '비누를 못에 살짝 묻히세요.', details: '나무에 훨씬 부드럽게 박힙니다.', steps: ['못 끝에 비누를 묻히고 박습니다.'] }
 ];
