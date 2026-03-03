@@ -16,7 +16,12 @@ import {
   ArrowRight,
   CheckCircle2,
   ChevronRight,
-  Home
+  Home,
+  ShieldCheck,
+  FileText,
+  Info,
+  Mail,
+  Heart
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
@@ -36,6 +41,7 @@ export default function App() {
   const [tips] = useState<Tip[]>(INITIAL_TIPS);
   const [showCommunity, setShowCommunity] = useState(false);
   const [selectedTip, setSelectedTip] = useState<Tip | null>(null);
+  const [showLegal, setShowLegal] = useState<'privacy' | 'terms' | 'about' | null>(null);
 
   // Refrigerator Recipe State
   const [ingredientsInput, setIngredientsInput] = useState('');
@@ -46,6 +52,7 @@ export default function App() {
     setShowRecipes(false);
     setShowCommunity(false);
     setSelectedTip(null);
+    setShowLegal(null);
   };
 
   const filteredTips = activeRoom 
@@ -69,7 +76,7 @@ export default function App() {
   }, [ingredientsInput]);
 
   return (
-    <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-primary">
+    <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-primary flex flex-col">
       {/* Premium Header */}
       <header className="border-b border-slate-100 py-5 px-8 flex items-center justify-between sticky top-0 bg-white/80 backdrop-blur-xl z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={resetNavigation}>
@@ -107,7 +114,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-16">
+      <main className="max-w-6xl mx-auto px-6 py-16 flex-grow w-full">
         
         {showRecipes ? (
           <motion.div 
@@ -185,7 +192,7 @@ export default function App() {
                           ))}
                         </div>
                         <div className="bg-slate-50 rounded-3xl p-6 border border-slate-100 group-hover:bg-blue-50/50 group-hover:border-blue-100 transition-colors">
-                          <p className="text-slate-600 leading-relaxed font-bold">
+                          <p className="text-slate-600 font-bold">
                             {recipe.instructions}
                           </p>
                         </div>
@@ -282,7 +289,7 @@ export default function App() {
             </div>
 
             {/* Tips Feed Section */}
-            <section>
+            <section className="mb-24">
               <div className="flex items-center justify-between mb-12">
                 <div className="flex items-center gap-4">
                   <div className="w-1.5 h-8 bg-primary rounded-full" />
@@ -333,11 +340,74 @@ export default function App() {
                 </AnimatePresence>
               </div>
             </section>
+
+            {/* About BBODOG Section (For AdSense/Trust) */}
+            <section className="bg-slate-50 rounded-[3rem] p-12 mb-16 border border-slate-100">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
+                  <Info size={14} />
+                  About Our Mission
+                </div>
+                <h3 className="text-3xl font-black text-slate-900 mb-6 tracking-tight">자취생의 더 나은 일상을 만드는 BBODOG</h3>
+                <div className="space-y-4 text-slate-600 font-bold leading-relaxed">
+                  <p>
+                    BBODOG은 '뽀득뽀득' 깨끗해진 일상을 지향하는 자취생 전문 생활 정보 플랫폼입니다. 
+                    단순한 정보 나열을 넘어, 실제 주거 공간의 구조(Floor Plan)를 기반으로 사용자에게 가장 직관적인 정보를 탐색하는 경험을 제공합니다.
+                  </p>
+                  <p>
+                    우리는 100가지 이상의 검증된 생활 팁과 데이터 기반의 냉장고 재료 추천 레시피를 통해 혼자 사는 즐거움을 돕습니다. 
+                    모든 콘텐츠는 실제 사용자들의 필요와 고민을 바탕으로 독창적으로 기획되고 제작되었습니다.
+                  </p>
+                </div>
+              </div>
+            </section>
           </>
         )}
       </main>
 
-      {/* Premium Tip Detail Modal */}
+      {/* Professional Footer */}
+      <footer className="bg-slate-900 text-white py-16 px-8 border-t border-slate-800 mt-auto">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-black text-xl">B</div>
+                <span className="text-2xl font-black tracking-tighter">BBODOG</span>
+              </div>
+              <p className="text-slate-400 font-bold text-sm max-w-sm leading-relaxed">
+                자취생들의 더 스마트하고 뽀득한 일상을 위한<br /> 
+                프리미엄 생활 지식 공유 플랫폼입니다.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-6">Quick Links</h4>
+              <ul className="space-y-4">
+                <li><button onClick={() => setShowLegal('about')} className="text-sm font-bold text-slate-300 hover:text-white transition-colors">서비스 소개</button></li>
+                <li><button onClick={() => setShowCommunity(true)} className="text-sm font-bold text-slate-300 hover:text-white transition-colors">커뮤니티</button></li>
+                <li><button onClick={() => setShowRecipes(true)} className="text-sm font-bold text-slate-300 hover:text-white transition-colors">냉장고 레시피</button></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-6">Legal & Policy</h4>
+              <ul className="space-y-4">
+                <li><button onClick={() => setShowLegal('privacy')} className="text-sm font-bold text-slate-300 hover:text-white transition-colors flex items-center gap-2"><ShieldCheck size={14} /> 개인정보처리방침</button></li>
+                <li><button onClick={() => setShowLegal('terms')} className="text-sm font-bold text-slate-300 hover:text-white transition-colors flex items-center gap-2"><FileText size={14} /> 이용약관</button></li>
+                <li><a href="mailto:support@bbodog.com" className="text-sm font-bold text-slate-300 hover:text-white transition-colors flex items-center gap-2"><Mail size={14} /> 고객문의</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">
+              © 2026 BBODOG Team. All rights reserved.
+            </p>
+            <div className="flex items-center gap-2 text-slate-500 text-[11px] font-bold">
+              Made with <Heart size={12} className="text-red-500 fill-red-500" /> for all singles
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Tip Detail Modal */}
       <AnimatePresence>
         {selectedTip && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -415,6 +485,60 @@ export default function App() {
                   이해했습니다
                   <CheckCircle2 size={20} className="text-blue-400 group-hover:scale-125 transition-transform" />
                 </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Legal & About Modals */}
+      <AnimatePresence>
+        {showLegal && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setShowLegal(null)}
+              className="absolute inset-0 bg-slate-900/80 backdrop-blur-md"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-full max-w-3xl bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
+            >
+              <div className="p-8 border-b border-slate-100 flex items-center justify-between">
+                <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
+                  {showLegal === 'privacy' ? <ShieldCheck className="text-primary" /> : showLegal === 'terms' ? <FileText className="text-primary" /> : <Info className="text-primary" />}
+                  {showLegal === 'privacy' ? '개인정보처리방침' : showLegal === 'terms' ? '이용약관' : '서비스 소개'}
+                </h2>
+                <button onClick={() => setShowLegal(null)} className="w-10 h-10 flex items-center justify-center bg-slate-50 rounded-full text-slate-400 hover:text-slate-600"><X size={20} /></button>
+              </div>
+              <div className="p-10 overflow-y-auto custom-scrollbar font-bold text-slate-600 leading-relaxed space-y-6">
+                {showLegal === 'privacy' ? (
+                  <>
+                    <p>BBODOG은 이용자의 개인정보를 소중하게 생각하며, 관련 법령을 준수합니다.</p>
+                    <h4 className="text-slate-900">1. 개인정보의 수집 항목</h4>
+                    <p>당사는 서비스 이용 과정에서 자동으로 수집되는 정보(IP 주소, 쿠키, 서비스 방문 기록)를 수집할 수 있습니다. 게시판 이용 시 작성한 내용은 영구 보관됩니다.</p>
+                    <h4 className="text-slate-900">2. 구글 애드센스 및 쿠키 사용</h4>
+                    <p>당사의 웹사이트에는 구글(Google)에서 제공하는 광고 서비스인 애드센스가 게재될 수 있습니다. 구글은 사용자의 방문 기록을 바탕으로 맞춤형 광고를 게재하기 위해 쿠키를 사용합니다.</p>
+                    <h4 className="text-slate-900">3. 개인정보의 보유 및 파기</h4>
+                    <p>익명 게시글의 경우 서비스 종료 시까지 보관되며, 그 외 정보는 법적 근거가 없는 한 즉시 파기합니다.</p>
+                  </>
+                ) : showLegal === 'terms' ? (
+                  <>
+                    <p>본 약관은 BBODOG 서비스 이용과 관련하여 필요한 사항을 규정합니다.</p>
+                    <h4 className="text-slate-900">1. 서비스의 목적</h4>
+                    <p>자취생들에게 유용한 생활 정보를 제공하고 사용자 간의 원활한 소통을 돕는 것을 목적으로 합니다.</p>
+                    <h4 className="text-slate-900">2. 게시물 관리</h4>
+                    <p>부적절한 내용(욕설, 광고, 도배 등)을 포함한 게시물은 관리자에 의해 사전 고지 없이 삭제될 수 있습니다. 익명 서비스이므로 타인의 권리를 침해하지 않도록 주의해야 합니다.</p>
+                    <h4 className="text-slate-900">3. 면책 조항</h4>
+                    <p>당사는 제공된 생활 정보로 인해 발생하는 어떠한 직간접적 피해에 대해서도 책임을 지지 않습니다. 정보의 적용은 사용자의 판단하에 이루어져야 합니다.</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-lg text-slate-900">"세상의 모든 자취생이 뽀득한 하루를 보내기를 바랍니다."</p>
+                    <p>BBODOG은 1인 가구 시대를 살아가는 자취생들을 위해 탄생했습니다. 좁은 공간에서의 효율적인 청소법, 유통기한이 임박한 재료를 활용한 요리법 등 실질적으로 삶의 질을 높여주는 독창적인 지식을 공유합니다.</p>
+                    <p>단순한 정보 사이트가 아닌, 평면도 기반의 직관적인 탐색과 실시간 소통이 가능한 커뮤니티를 통해 자취생들의 따뜻한 사랑방이 되고자 합니다.</p>
+                  </>
+                )}
               </div>
             </motion.div>
           </div>

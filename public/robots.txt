@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bbodog.web.app/sitemap.xml
